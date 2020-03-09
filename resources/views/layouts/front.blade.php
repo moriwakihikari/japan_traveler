@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="{{app()->getLocale() }}">
+    <head>
+        <meta chareset="utf-8">
+        <!-- windows edge対応 -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- 画面文字調整 -->
+        <meta name="viewport" content="width=device-width, initial-scale=!">
+        <!-- トークン -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <!-- タイトル -->
+        <title>@yield('title')</title>
+        <!-- js -->
+        <script src="{{ secure_asset('js/app.js') }}" defer></script>
+        <!-- フォント -->
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+        <!-- css読み込み-->
+        <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ secure_asset('css/front.css') }}" rel="stylesheet">
+        
+    </head>
+    <body>
+        <header>
+            <div id="app">
+                <div class="container">
+                    <div class="header-title-area">
+                        <h1 class="logo">日本の名所</h1>
+                        <p class="text-sub">~自転車日本一周~</p>
+                    </div>
+                    <ul class="header-right-navi">
+                        <li><a href="#">新規登録</a></li>
+                        <li><a href="#">ログイン</a></li>
+                    </ul>
+                    <ul class="header-navigation">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Prefecture</a></li>
+                        <li><a href="#">Rondom</a></li>
+                        <li><a href="#">Bulltin_Board</a></li>
+                    </ul>
+                </div>
+        </header>
+            
+            <div class="main">
+                <div class="container">
+                    <div class="left-contents">
+                        <div class="card-contents">
+                            @yield('content')
+                        </div>
+                    </div>
+                    <div class="right-contents">
+                        <div class="card-contents">
+                            <h2 class="text-title">検索</h2>
+                            <form>
+                                <select name='prefecture'>
+                                    <option value='0'>北海道</option>
+                                    <option value='1'>青森</option>
+                                    <option value='2'>岩手</option>
+                                    <option value='3'></option>
+                                </select>
+                            <input type='submit' value='送信' />
+                            </form>
+                            <h2 class="text-title">youtube</h2>
+                            <iframe width="100" height="100" src="https://www.youtube.com/embed/lHIYBDbQmj8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <p class="copyright">(C) 日本の名所</p>
+            </footer>
+            </div>
+    </body>
+</html>

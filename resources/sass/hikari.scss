@@ -1,7 +1,11 @@
+head {
+  background-color: #808080;
+}
+
 body {
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #000;
+  background-color: #808080;
   color: #fff;
 }
 
@@ -11,20 +15,20 @@ body {
 }
 
 .navbar-brand {
-  color: #fff !important;
+  color: #efefef !important;
 }
 
 .nav-link {
-  color: #fff !important;
+  color: #efefef !important;
 }
 
 .table-dark {
-  color: #fff;
+  color: #efefef;
 }
 
 .list-group-item {
   border-color: #fff;
-  background-color: #000;
+  background-color: #efefef;
 }
 
 .login-box {
@@ -37,4 +41,8 @@ body {
 
 .login-body {
   background-color: rgba(0, 0, 0, 0.25);
+}
+
+main {
+  background-color: #808080;
 }
