@@ -34,9 +34,9 @@
                     </ul>
                     <ul class="header-navigation">
                         <li><a href="#">Home</a></li>
-                        <li><a href="#">Prefecture</a></li>
-                        <li><a href="#">Rondom</a></li>
-                        <li><a href="#">Bulltin_Board</a></li>
+                        <li><a href="prefecture">Prefecture</a></li>
+                        <li><a href="hikari.rondom">Rondom</a></li>
+                        <li><a href="hikari/bulltin_board">Bulltin_Board</a></li>
                     </ul>
                 </div>
         </header>
