@@ -17,9 +17,9 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'hikari'], function() {
     Route::get('blog/index', 'Hikari\BlogController@index');
-    Route::get('blog/create', 'Hikari\BlogController@create');
+    Route::get('blog/create', 'Hikari\BlogController@create')->middleware('auth');
     Route::get('blog/list', 'Hikari\BlogController@list');
-    Route::get('blog/edit', 'Hikari\BlogController@edit');
+    Route::get('blog/edit', 'Hikari\BlogController@edit')->middleware('auth');
     Route::get('blog/prefecture', 'Hikari\BlogController@prefecture');
     Route::get('blog/prefecture/city', 'Hikari\BlogController@city');
 });
@@ -37,3 +37,7 @@ Route::group(['prefix' => 'hikari'], function() {
 });
 
 Route::get('/', 'Hikari\HomeController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

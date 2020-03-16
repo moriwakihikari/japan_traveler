@@ -24,18 +24,36 @@
         <header>
             <div id="app">
                 <div class="container">
-                    <div class="header-title-area">
-                        <h1 class="logo">日本の名所</h1>
-                        <p class="text-sub">~自転車日本一周~</p>
-                    </div>
-                    <ul class="header-right-navi">
-                        <li><a href="#">新規登録</a></li>
-                        <li><a href="#">ログイン</a></li>
+                    <ul class="header-title-area">
+                        <li><h1 class="logo">日本の名所</h1></li>
+                        <li><p class="text-sub">~自転車日本一周~</p></li>
+                    </ul>
+                    <ul class="navbar-nav-right">
+                        @guest
+                        <li><a class="nav-link" href="{{ route('login') }}">{{ __('login')  }}</a></li>
+                        @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                    {{ __('logout')  }}
+                                </a>
+                                
+                                <form id="logout-form" action="{{ route('logout')  }}" method="POST" style="display; none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                        @endguest
                     </ul>
                     <ul class="header-navigation">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="prefecture">Prefecture</a></li>
-                        <li><a href="hikari.rondom">Rondom</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="hikari/blog/index">Prefecture</a></li>
+                        <li><a href="hikari/rondom">Rondom</a></li>
                         <li><a href="hikari/bulltin_board">Bulltin_Board</a></li>
                     </ul>
                 </div>

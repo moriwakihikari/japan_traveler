@@ -35,27 +35,26 @@ header {
   margin-bottom: 30px;
 }
 
+.header-title-area li {
+  list-style-type: none;
+  float: left;
+}
+
 .logo {
   color: #000;
   font-family: "\FF2D\FF33   \30B4\30B7\30C3\30AF", sans-serif;
 }
 
-.header-right-navi {
-  position: fixed;
-  top: 60px;
-  right: 140px;
-}
-
-.header-right-navi li {
-  list-style-type: none;
-}
-
 .text-sub {
-  margin-top: 40px;
+  padding: 10px;
   color: #777;
 }
 
-.text-sub:after {
+.navbar-nav-right {
+  text-align: right;
+}
+
+.header-title-area:after {
   clear: both;
   display: block;
   content: " ";
@@ -75,9 +74,11 @@ header {
 
 .header-navigation li {
   float: left;
+  width: 25%;
   padding: 0 30px;
   text-align: center;
   list-style-type: none;
+  font-size: 18px;
 }
 
 .header-navigation li a {
