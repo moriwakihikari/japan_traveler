@@ -7,21 +7,11 @@
         <div class="row">
             <div class="posts col-md-8 mx-auto mt-3">
                 <h2>ダーツの旅的な</h2>
-                <p>今回の都道府県は「<?php
-                    $fortune = array(
-                    "北海道",
-                    "青森",
-                    "岩手",
-                    "秋田",
-                    "宮城",
-                    "山形",
-                    "福島"
-                    );
-                    $count  = count($fortune);
-                    $random = rand(0, $count - 1);
-                    echo $fortune[$random];
-                    ?>」です。
-                </p>
+                <h3>４７都道府県をランダムで表示します。<br>
+                どこに行こうか迷ったり、罰ゲームで使ったりいろんなことに使ってください。<br>
+                それでは下のボタンを押してください。
+                </h3>
+                <div class="result"><button onclick="location.href='rondom/result'">結果</button></div>
             </div>
         </div>
     </div>

@@ -50,11 +50,18 @@
                         </li>
                         @endguest
                     </ul>
+                    <!-- 管理者のみ -->
+                    <ul>
+                        @can('system-only')
+                        <li><a href="">テスト</a></li>
+                        @endcan
+                    </ul>
+                        
                     <ul class="header-navigation">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="hikari/blog/index">Prefecture</a></li>
-                        <li><a href="hikari/rondom">Rondom</a></li>
-                        <li><a href="hikari/bulltin_board">Bulltin_Board</a></li>
+                        <li><a href="{{ action('Hikari\HomeController@index') }}">Home</a></li>
+                        <li><a href="{{ action('Hikari\BlogController@index') }}">Prefecture</a></li>
+                        <li><a href="{{ action('Hikari\RondomController@index') }}">Rondom</a></li>
+                        <li><a href="{{ action('Hikari\KeijibanController@index') }}">Bulltin_Board</a></li>
                     </ul>
                 </div>
         </header>

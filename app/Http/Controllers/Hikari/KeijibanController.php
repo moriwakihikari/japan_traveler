@@ -13,14 +13,24 @@ class KeijibanController extends Controller
         return view('hikari.keijiban.index');
     }
     
-    public function create()
+    public function add()
     {
         return view('hikari.keijiban.create');
+    }
+    
+    public function create()
+    {
+        return redirect('hikari/keijiban/create');
     }
     
     public function edit()
     {
         return view('hikari.keijiban.edit');
+    }
+    
+    public function update()
+    {
+        return redirect('hikari/keijiban/edit');
     }
     
     public function in()
