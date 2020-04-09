@@ -17,6 +17,7 @@ class CreatePrefecturesTable extends Migration
             $table->bigIncrements('prefecture_id');
             $table->string('prefecture_name');
             $table->integer('area_id');
+            $table->unsignedSmallInteger('display_order');
             $table->timestamps();
         });
     }

@@ -16,22 +16,29 @@
                     @endforeach
                 </ul>
                 @endif
+                <div class="dropdown">
+                <select class="form-control" name="prefecture">
+                    <option value="1">北海道</option>
+                    <option value="2">青森</option>
+                    <option value="3">岩手</option>
+                </select>
+                </div>
                 <div class="form-group row">
-                    <label class="col-md-2">タイトル</label>
+                    <label class="col-md-2" for="blog_title">タイトル</label>
                     <div class="col-md-10">
-                        <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                        <input type="text" class="form-control" name="blog_title" value="{{ old('blog_title') }}">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-2">本文</label>
                     <div class="col-md-10">
-                        <textarea class="form-control" name="body" rows="20">{{ old('body') }}</textarea>
+                        <textarea class="form-control" name="blog_honbun" rows="20">{{ old('blog_honbun') }}</textarea>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-2">画像</label>
                     <div class="col-md-10">
-                        <input type="file" class="form-control-file" name="image">
+                        <input type="file" class="form-control-file" name="blog_image">
                     </div>
                 </div>
                 {{ csrf_field() }}

@@ -52,6 +52,7 @@ header {
 
 .navbar-nav-right {
   text-align: right;
+  list-style-type: none;
 }
 
 .header-title-area:after {

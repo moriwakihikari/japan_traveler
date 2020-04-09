@@ -37,11 +37,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($posts as $news)
+                            @foreach($posts as $blog)
                                 <tr>
-                                    <th>{{ $news->id }}</th>
-                                    <td>{{ \Str::limit($news->title, 100) }}</td>
-                                    <td>{{ \Str::limit($news->body, 250) }}</td>
+                                    <th>{{ $blog->blog_id }}</th>
+                                    <td>{{ \Str::limit($blog->blog_title, 100) }}</td>
+                                    <td>{{ \Str::limit($blog->blog_honbun, 250) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

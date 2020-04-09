@@ -5,12 +5,38 @@ namespace App\Http\Controllers\Hikari;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Blog;
+use App\Prefecture;
+
 class BlogController extends Controller
 {
-    //
-    public function index()
+    protected $blog;
+    protected $prefecture;
+    
+    const NUM_PER_PAGE = 10;
+    
+    function __construct(Blog $blog, Prefecture $prefecture)
     {
-        return view('hikari.blog.index');
+        $this->blog = $blog;
+        $this->prefecture = $prefecture;
+    }
+    
+    public function index(Request $request)
+    {
+        $input = $request->input();
+        
+        $list = $this->blog->getBlogList(self::NUM_PER_PAGE, $input);
+        
+        $list->appends($input);
+        
+        $prefecture_list = $this->prefecture->getPrefectureList();
+        
+        $mounth_list = $this->blog->getMonthList();
+        
+        
+        
+        //$list = $this->prefecture->getPrefectureList(self::NUM_PER_PAGE);
+        return view('hikari.blog.index', compact('list', 'month_list', 'prefecture_list'));
     }
     
     public function add()
@@ -27,9 +53,9 @@ class BlogController extends Controller
         
         if (isset($form['image'])) {
             $path = $request->file('image')->store('public/image');
-            $blog->image_path = basename($path);
+            $blog->blog_image = basename($path);
         } else {
-            $news->image_path = null;
+            $blog->blog_image = null;
         }
         
         unset($form['_token']);
@@ -44,13 +70,13 @@ class BlogController extends Controller
     
     public function list(Request $request)
     {
-        $cond_title = $request->cond_title;
-        if ($cond_title != '') {
-            $posts = Blog::where('title', $cond_title)->get();
+        $cond_blog_title = $request->cond_blog_title;
+        if ($cond_blog_title != '') {
+            $posts = Blog::where('blog_title', $cond_blog_title)->get();
         } else {
             $posts = Blog::all();
         }
-        return view('hikari.blog.list', ['posts' => $posts, 'cond_title' => $cond_title]);
+        return view('hikari.blog.list', ['posts' => $posts, 'cond_blog_title' => $cond_blog_title]);
     }
     
     public function edit()

@@ -50,12 +50,6 @@
                         </li>
                         @endguest
                     </ul>
-                    <!-- 管理者のみ -->
-                    <ul>
-                        @can('system-only')
-                        <li><a href="">テスト</a></li>
-                        @endcan
-                    </ul>
                         
                     <ul class="header-navigation">
                         <li><a href="{{ action('Hikari\HomeController@index') }}">Home</a></li>
@@ -75,6 +69,18 @@
                     </div>
                     <div class="right-contents">
                         <div class="card-contents">
+                           {{-- <h2 class="panel-title">カテゴリー</h2>
+                            <ul class="monthly_archive">
+                                @forelse(isset($prefecture_list as $prefecture))
+                                <li>
+                                    <a href="{{ route('blog_index', ['prefecture_id' => $prefecture->prefecture_id]) }}">
+                                    {{ $prefecture->name }}
+                                    </a>
+                                </li>
+                                @empty
+                                <p>カテゴリーがありません</p>
+                                @endforelse
+                            </ul>--}}
                             <h2 class="text-title">検索</h2>
                             <form>
                                 <select name='prefecture'>

@@ -13,7 +13,7 @@ class PrefecturesSeeder extends Seeder
     {
         DB::table('prefectures')->insert([
             ['area_id' => 1, 'prefecture_id' => 1, 'prefecture_name' => '北海道'],
-            ['area_id' => 2, 'prefecture_id' => 2, 'prefecture_name' => '北海道'],
+            ['area_id' => 2, 'prefecture_id' => 2, 'prefecture_name' => '青森'],
             ['area_id' => 2, 'prefecture_id' => 3, 'prefecture_name' => '北海道'],
             ['area_id' => 2, 'prefecture_id' => 4, 'prefecture_name' => '北海道'],
             ['area_id' => 2, 'prefecture_id' => 5, 'prefecture_name' => '北海道'],
