@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Prefecture extends Model
 {
-
+/*
     protected $primaryKey = 'prefecture_id';
     protected $fillable = ['prefecture_name', 'display_order'];
     protected $dates = ['created_at', 'update_at'];
@@ -24,5 +24,5 @@ class Prefecture extends Model
     public function blogs()
     {
         return $this->hasMany('App\Blog', 'prefecture_id', 'prefecture_id');
-    }
+    }*/
 }

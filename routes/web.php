@@ -30,15 +30,18 @@ Route::group(['prefix' => 'hikari'], function() {
 Route::group(['prefix' => 'hikari'], function() {
     Route::get('rondom', 'Hikari\RondomController@index');
     Route::get('rondom/result', 'Hikari\RondomController@result');
+    Route::get('keijiban/index', 'Hikari\KeijibanController@index');
+
 });
 
-Route::group(['prefix' => 'hikari'], function() {
-    Route::get('keijiban/index', 'Hikari\KeijibanController@index');
-    Route::get('keijiban/thread/create', 'Hikari\KeijibanController@add')->middleware('auth');
-    Route::post('keijiban/thread/create', 'Hikari\KeijibanController@create')->middleware('auth');
-    Route::get('keijiban/thread/edit', 'Hikari\KeijibanController@edit')->middleware('auth');
-    Route::post('keijiban/thread/edit', 'Hikari\KeijibanController@update')->middleware('auth');
-    Route::get('keijiban/thread/in', 'Hikari\KeijibanController@in')->middleware('auth');
+Route::group(['prefix' => 'hikari', 'middleware' => 'auth'], function() {
+    Route::get('keijiban/thread/create', 'Hikari\KeijibanController@add');
+    Route::post('keijiban/thread/create', 'Hikari\KeijibanController@create');
+    Route::get('keijiban/thread/edit', 'Hikari\KeijibanController@edit');
+    Route::post('keijiban/thread/edit', 'Hikari\KeijibanController@update');
+    Route::get('keijiban/thread/delete', 'Hikari\KeijibanController@delete');
+    Route::get('keijiban/thread/in', 'Hikari\KeijibanController@in');
+    Route::post('keijiban/thread/in', 'Hikari\KeijibanController@toukou');
 });
 
 Route::get('/', 'Hikari\HomeController@index');
@@ -63,11 +66,12 @@ Route::post('login', 'Admin\Auth\LoginController@login');
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
     Route::post('logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
     Route::get('home', 'Admin\HomeController@index')->name('admin.home');
-    Route::get('blog/create', 'Hikari\BlogController@add');//->middleware('auth');
-    Route::post('blog/create', 'Hikari\BlogController@create');//->middleware('auth');
+    Route::get('blog/create', 'Hikari\BlogController@add');
+    Route::post('blog/create', 'Hikari\BlogController@create');
     Route::get('blog/list', 'Hikari\BlogController@list');
-    Route::get('blog/edit', 'Hikari\BlogController@edit');//->middleware('auth');
-    Route::post('blog/edit', 'Hikari\BlogController@update');//->middleware('auth');
+    Route::get('blog/edit', 'Hikari\BlogController@edit');
+    Route::post('blog/edit', 'Hikari\BlogController@update');
+    Route::get('blog/delete', 'Hikari\BlogController@delete');
 
 });
 

@@ -5,16 +5,22 @@ namespace App\Http\Controllers\Hikari;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Prefecture;
+
 class RondomController extends Controller
 {
     //
     public function index()
     {
-        return view('hikari.rondom.index');
+        $prefectures = Prefecture::all();
+
+        return view('hikari.rondom.index', ['prefectures' => $prefectures]);
     }
     
     public function result()
     {
+        $prefectures = Prefecture::all();
+
         $fortune = array(
             "北海道",
             "青森",
@@ -36,6 +42,6 @@ class RondomController extends Controller
         $count  = count($fortune);
         $random = rand(0, $count - 1);
         $aaa = "TEST";
-        return view('hikari.rondom.result',['random' => $fortune[$random] , 'a' => $aaa]);//連想配列　
+        return view('hikari.rondom.result',['random' => $fortune[$random] , 'a' => $aaa], ['prefectures' => $prefectures]);//連想配列　
     }
 }

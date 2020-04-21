@@ -81,16 +81,15 @@
                                 <p>カテゴリーがありません</p>
                                 @endforelse
                             </ul>--}}
-                            <h2 class="text-title">検索</h2>
-                            <form>
-                                <select name='prefecture'>
-                                    <option value='0'>北海道</option>
-                                    <option value='1'>青森</option>
-                                    <option value='2'>岩手</option>
-                                    <option value='3'></option>
+                            <div clsss="dropdown">
+                                <h2 class="text-title">検索</h2>
+                                <select class="form-control" name="prefecture">
+                                    @foreach($prefectures as $val)
+                                    <option value="{{ $val->prefecture_id }}">{{ $val->prefecture_name }}</option>
+                                    @endforeach
+                                    <input type='submit' value='送信' />
                                 </select>
-                            <input type='submit' value='送信' />
-                            </form>
+                            </div>
                             <h2 class="text-title">youtube</h2>
                             <iframe width="100" height="100" src="https://www.youtube.com/embed/lHIYBDbQmj8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>

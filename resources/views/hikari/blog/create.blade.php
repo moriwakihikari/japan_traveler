@@ -1,3 +1,5 @@
+<script src="{{ secure_asset('js/test.js') }}" defer></script>
+
 @extends('layouts.hikari')
 
 @section('title', 'ブログの新規作成')
@@ -17,11 +19,18 @@
                 </ul>
                 @endif
                 <div class="dropdown">
-                <select class="form-control" name="prefecture">
-                    <option value="1">北海道</option>
-                    <option value="2">青森</option>
-                    <option value="3">岩手</option>
-                </select>
+                    <select id="prefecture_id" class="form-control" name="prefecture_id">
+                        @foreach($prefectures as $val)
+                        <option value="{{ $val->prefecture_id }}">{{ $val->prefecture_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="dropdown">
+                    <select id="city_id" class="form-control" name="city_id">
+                        @foreach($cities as $val)
+                        <option value="{{ $val->city_id }}">{{ $val->city_name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-2" for="blog_title">タイトル</label>
@@ -40,6 +49,20 @@
                     <div class="col-md-10">
                         <input type="file" class="form-control-file" name="blog_image">
                     </div>
+                </div>
+                <div class="dropdown">
+                    <select class="form-control" name="author_id">
+                        @foreach($admins as $val)
+                        <option value="{{ $val->admin_id }}">{{ $val->user_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="dropdown">
+                    <select class="form-control" name="changer_id">
+                        @foreach($admins as $val)
+                        <option value="{{ $val->admin_id }}">{{ $val->user_name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 {{ csrf_field() }}
                 <input type="submit" class="btn btn-primary" value="更新">

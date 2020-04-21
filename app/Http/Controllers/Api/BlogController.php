@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Hikari;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -87,7 +87,7 @@ class BlogController extends Controller
         $blog->fill($form);
         $blog->save();
         
-        return redirect('admin/blog/list');
+        return redirect('hikari/blog/create');
     }
     
     public function list(Request $request)
@@ -103,17 +103,17 @@ class BlogController extends Controller
     
     public function edit(Request $request)
     {
-        $blog = Blog::find($request->id);
+        $blog = Blog::find($request->blog_id);
         if (empty($blog)) {
             abort(404);
         }
-        return view('hikari.blog.edit', ['blog_form' => $blog]);//redirctに連想配列は使えない
+        return view('hikari.blog.edit', ['blog_form' => $blog]);
     }
     
     public function update(Request $request)
     {
         $this->validate($request, Blog::$rules);
-        $blog = Blog::find($request->id);
+        $blog = Blog::find($request->blog_id);
         $blog_form = $request->all();
         if (isset($blog_form['blog_image']))
         {
@@ -129,15 +129,7 @@ class BlogController extends Controller
         
         $blog->fill($blog_form)->save();
         
-        return redirect('admin/blog/list');
-    }
-    
-    public function delete(Request $request)
-    {
-        $blog = Blog::find($request->id);
-        $blog->delete();
-        
-        return redirect('admin/blog/list');
+        return redirect('hikari/blog/edit');
     }
     
     public function prefecture()
