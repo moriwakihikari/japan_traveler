@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Prefecture extends Model
 {
+    protected $guarded = array('id');
+    
+    protected $primaryKey = 'prefecture_id';
 /*
     protected $primaryKey = 'prefecture_id';
     protected $fillable = ['prefecture_name', 'display_order'];

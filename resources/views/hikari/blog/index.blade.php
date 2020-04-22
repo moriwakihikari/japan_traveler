@@ -11,7 +11,11 @@
                             @foreach($areas as $val)
                             <option value="{{ $val->area_id }}">{{ $val->area_name }}</option>
                             @endforeach
-                            
+                        </lable>
+                        <lable clsss="col-md-8" name="prefecture">
+                            @foreach($prefectures as $val)
+                            <option value="{{ $val->prefecture_id }}">{{ $val->prefecture_name }}</option>
+                            @endforeach
                         </lable>
                     </div>
                 </form>

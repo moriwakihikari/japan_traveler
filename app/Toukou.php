@@ -8,6 +8,8 @@ class Toukou extends Model
 {
     protected $guarded = array('id');
     
+    protected $primaryKey = 'toukou_id';
+    
     public static $rules = array(
         'toukou_title' => 'required',
         'toukou_honbun' => 'required',

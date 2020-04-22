@@ -52,7 +52,7 @@ class KeijibanController extends Controller
         $thread->fill($form);
         $thread->save();
 
-        return redirect('hikari/keijiban/create');
+        return redirect('hikari/keijiban/index');
     }
     
     public function edit(Request $request)

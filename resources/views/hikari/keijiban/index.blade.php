@@ -38,14 +38,14 @@
                         <tbody>
                             @foreach($posts as $thread)
                                 <tr>
-                                    <th>{{ $thread->id }}</th>
+                                    <th>{{ $thread->thread_id }}</th>
                                     <td>{{ \Str::limit($thread->thread_title, 100) }}</td>
                                     <tb>
                                         <div>
-                                            <a href="{{ action('Hikari\KeijibanController@edit', ['id' => $thread->id]) }}">編集</a>
+                                            <a href="{{ action('Hikari\KeijibanController@edit', ['thread_id' => $thread->thread_id]) }}">編集</a>
                                         </div>
                                         <div>
-                                            <a href="{{ action('Hikari\KeijibanController@delete', ['id' => $thread->id]) }}">削除</a>
+                                            <a href="{{ action('Hikari\KeijibanController@delete', ['thread_id' => $thread->thread_id]) }}">削除</a>
                                         </div>
                                     </tb>
                                 </tr>

@@ -8,6 +8,8 @@ class Blog extends Model
 {
     protected $guarded = array('id');
     
+    protected $primaryKey = 'blog_id';
+    
     public static $rules = array(
         'blog_title' => 'required',
         'blog_honbun' => 'required',

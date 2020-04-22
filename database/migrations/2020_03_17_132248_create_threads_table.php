@@ -14,7 +14,7 @@ class CreateThreadsTable extends Migration
     public function up()
     {
         Schema::create('threads', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('thread_id');
             $table->string('thread_title');
             $table->string('author_id');
             $table->string('changer_id');

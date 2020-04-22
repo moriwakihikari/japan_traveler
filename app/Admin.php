@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Admin extends Authenticatable
 {
+    protected $primaryKey = 'user_id';//主キー変更にこれ！
+    
     use Notifiable;
 
     /**

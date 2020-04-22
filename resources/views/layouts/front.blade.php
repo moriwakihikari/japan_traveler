@@ -22,7 +22,7 @@
     </head>
     <body>
         <header>
-            <div id="app">
+            <div user_id="app">
                 <div class="container">
                     <ul class="header-title-area">
                         <li><h1 class="logo">日本の名所</h1></li>
@@ -33,7 +33,7 @@
                         <li><a class="nav-link" href="{{ route('login') }}">{{ __('login')  }}</a></li>
                         @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a user_id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -43,7 +43,7 @@
                                     {{ __('logout')  }}
                                 </a>
                                 
-                                <form id="logout-form" action="{{ route('logout')  }}" method="POST" style="display; none;">
+                                <form user_id="logout-form" action="{{ route('logout')  }}" method="POST" style="display; none;">
                                     @csrf
                                 </form>
                             </div>

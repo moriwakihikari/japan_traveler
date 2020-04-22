@@ -43,7 +43,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-md-10">
-                        <input type="hidden" name="id" value="{{ $blog_form->id }}">
+                        <input type="hidden" name="id" value="{{ $blog_form->blog_id }}">
                         {{csrf_field() }}
                         <input type="submit" class="btn-primary" value="更新">
                     </div>

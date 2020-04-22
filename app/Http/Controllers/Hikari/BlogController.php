@@ -39,8 +39,9 @@ class BlogController extends Controller
     
     public function index()
     {
-        $areas = Area::all();
-        $prefectures = Prefecture::all();
+        $ids = array(1,2,3,4,5,6,7,8);
+        $areas = Area::where('area_id',$ids)->get();
+        $prefectures = Prefecture::where('prefecture_id',$ids)->get();
         /*$input = $request->input();
         
         $list = $this->blog->getBlogList(self::NUM_PER_PAGE, $input);

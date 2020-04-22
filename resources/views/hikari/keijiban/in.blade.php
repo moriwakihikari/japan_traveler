@@ -34,6 +34,10 @@
                         <input type="file" class="form-control-file" name="toukou_image">
                     </div>
                 </div>
+                <div>
+                    <input type="hidden" name="author_id" value="{{ Auth::id() }}">
+                    <input type="hidden" name="changer_id" value="{{ Auth::id() }}">
+                </div>
                 {{ csrf_field() }}
                 <input type="submit" class="btn btn-primary" value="更新">
             </form>
@@ -57,7 +61,7 @@
                         <body>
                             @foreach($posts as $toukou)
                                 <tr>
-                                    <th>{{ $toukou->id }}</th>
+                                    <th>{{ $toukou->toukou_id }}</th>
                                     <td>{{ \Str::limit($toukou->toukou_title, 100) }}</td>
                                     <td>{{ \Str::limit($toukou->toukou_honbun, 250) }}</td>
                                 </tr>

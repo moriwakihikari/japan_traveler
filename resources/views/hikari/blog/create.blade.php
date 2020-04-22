@@ -50,19 +50,9 @@
                         <input type="file" class="form-control-file" name="blog_image">
                     </div>
                 </div>
-                <div class="dropdown">
-                    <select class="form-control" name="author_id">
-                        @foreach($admins as $val)
-                        <option value="{{ $val->admin_id }}">{{ $val->user_name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="dropdown">
-                    <select class="form-control" name="changer_id">
-                        @foreach($admins as $val)
-                        <option value="{{ $val->admin_id }}">{{ $val->user_name }}</option>
-                        @endforeach
-                    </select>
+                <div>
+                    <input type="hidden" name="author_id" value="{{ Auth::id() }}">
+                    <input type="hidden" name="changer_id" value="{{ Auth::id() }}">
                 </div>
                 {{ csrf_field() }}
                 <input type="submit" class="btn btn-primary" value="更新">
