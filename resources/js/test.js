@@ -1,27 +1,25 @@
 console.log("test")
-$(function() {
-  $("#prefecture_id").on("change", function(){
 
-    var input = $("#prefecture_id").val();
-
-    $.ajax({
-      type: 'GET',
-      url: '/products/search',
-      data: { keyword: input },
-      dataType: 'json'
-    })
-
-    .done(function(products) {
-      $(".検索結果表示クラス").empty();
-      if (products.length !==0) {
-        $(".検索結果表示クラス").append("インクリメンタルサーチの結果を表示させる記述");
-      }
-      else {
-        $(".検索結果表示クラス").append("検索結果がない旨を表示させる記述");
-      }
-    })
-    .fail(function(){
-      alert('映画検索に失敗しました');
-    })
-  })
-})
+$(function(){
+            $('#select_prefecture').on('change',function(){
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url:'/admin//blog/selected_prefecture',
+                    type:'POST',
+                    data:{
+                        prefecture: $(this).val()
+                    }
+                })
+                // Ajaxリクエストが成功した時発動
+                .done(function (results) {
+                    $("#selected_city option:not(:first-child)").remove(); //optionリセット
+                    $("#selected_city").append(results);
+                })
+                // Ajaxリクエストが失敗した時発動
+                .fail( (data) => {
+                    alert("error"); //通信失敗時
+                })
+            });
+        });

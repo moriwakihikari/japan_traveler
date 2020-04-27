@@ -8,7 +8,7 @@
                 <form action="{{ action('Hikari\BlogController@index') }}" method="get">
                     <div class="col-md-2">
                         <lable clsss="col-md-8" name="area">
-                            @foreach($areas as $val)
+                            @foreach($areaInfo as $val)
                             <option value="{{ $val->area_id }}">{{ $val->area_name }}</option>
                             @endforeach
                         </lable>

@@ -20,8 +20,9 @@ class RondomController extends Controller
     public function result()
     {
         $prefectures = Prefecture::all();
-
-        $fortune = array(
+        
+        $fortune = Prefecture::inRandomOrder('prefecture_name')->first()->prefecture_name;
+        /*$fortune = array(
             "北海道",
             "青森",
             "岩手",
@@ -40,8 +41,8 @@ class RondomController extends Controller
             "長野"
         );
         $count  = count($fortune);
-        $random = rand(0, $count - 1);
-        $aaa = "TEST";
-        return view('hikari.rondom.result',['random' => $fortune[$random] , 'a' => $aaa], ['prefectures' => $prefectures]);//連想配列　
+        $random = rand(0, $count - 1);*/
+        //$aaa = "TEST";
+        return view('hikari.rondom.result',['fortune' => $fortune, 'prefectures' => $prefectures]);//連想配列　
     }
 }

@@ -68,6 +68,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
     Route::get('home', 'Admin\HomeController@index')->name('admin.home');
     Route::get('blog/create', 'Hikari\BlogController@add');
     Route::post('blog/create', 'Hikari\BlogController@create');
+    Route::post('blog/select_prefecture', 'Hikari\BlogController@selectCity');
     Route::get('blog/list', 'Hikari\BlogController@list');
     Route::get('blog/edit', 'Hikari\BlogController@edit');
     Route::post('blog/edit', 'Hikari\BlogController@update');

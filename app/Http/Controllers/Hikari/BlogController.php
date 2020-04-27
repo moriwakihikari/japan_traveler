@@ -39,9 +39,14 @@ class BlogController extends Controller
     
     public function index()
     {
-        $ids = array(1,2,3,4,5,6,7,8);
-        $areas = Area::where('area_id',$ids)->get();
-        $prefectures = Prefecture::where('prefecture_id',$ids)->get();
+        $prefectures = Prefecture::all();
+        
+        $areaInfo = Area::all();
+        
+        foreach($areaInfo as $area)
+        {
+            $areaList[$area->id][] = $area->prefecture();
+        }
         /*$input = $request->input();
         
         $list = $this->blog->getBlogList(self::NUM_PER_PAGE, $input);
@@ -55,17 +60,28 @@ class BlogController extends Controller
         
         
         //$list = $this->prefecture->getPrefectureList(self::NUM_PER_PAGE);*/
-        return view('hikari.blog.index', ['areas' => $areas, 'prefectures' => $prefectures]);         /*compact('list', 'month_list', 'prefecture_list'));*/
+        return view('hikari.blog.index', ['areaInfo' => $areaInfo, 'prefectures' => $prefectures]);         /*compact('list', 'month_list', 'prefecture_list'));*/
     }
     
     public function add()
     {
         $prefectures = Prefecture::all();
         $cities = City::all();
-        $admins = Admin::all();//author_id,change_idをphpmyadminのnullにチェックして対応 viewも大分意味が分からない物に。。。
 
-        return view('hikari.blog.create', ['prefectures' => $prefectures, 'cities' => $cities, 'admins' => $admins]);
+
+        return view('hikari.blog.create',['prefectures' => $prefectures,'cities' => $cities]);
     }
+    
+    public function selectCity(Request $request)
+    {
+        $arr_cities = City::where('prefecture_id', $request->prefecture_id)->get();
+        $arrOption = array();
+        foreach($arr_cities as $city){
+            array_push($arrOption,'<option value="'.$city['city_id'].'">'.$city['city_name'].'</option>');
+        }
+        return $arrOption;
+    }
+    
     
     public function create(Request $request)
     {

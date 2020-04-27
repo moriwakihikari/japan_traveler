@@ -5,12 +5,12 @@
 @section('title', 'ブログの新規作成')
 
 @section('content')
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 mx-auto">
             <h2>ブログの新規作成</h2>
-            <form action="{{ action('Hikari\BlogController@create') }}" method="post" enctype="multipart/form-data">
-                
+            <form id="select_prefecture_city" action="{{ action('Hikari\BlogController@create') }}" method="post" enctype="multipart/form-data">
                 @if (count($errors) > 0)
                 <ul>
                     @foreach($errors->all() as $e)
@@ -18,18 +18,19 @@
                     @endforeach
                 </ul>
                 @endif
-                <div class="dropdown">
-                    <select id="prefecture_id" class="form-control" name="prefecture_id">
+                    {{ csrf_field() }}
+                <div>
+                    <p>都道府県選択</p>
+                    <select id="select_prefecture" class="form-control" name="prefecture_id">
                         @foreach($prefectures as $val)
                         <option value="{{ $val->prefecture_id }}">{{ $val->prefecture_name }}</option>
                         @endforeach
                     </select>
                 </div>
-                <div class="dropdown">
-                    <select id="city_id" class="form-control" name="city_id">
-                        @foreach($cities as $val)
-                        <option value="{{ $val->city_id }}">{{ $val->city_name }}</option>
-                        @endforeach
+                <div>
+                    <p>市選択</p>
+                    <select id="selected_city" class="form-control" name="city_id">
+                        <option value="">--選択してください--</option>
                     </select>
                 </div>
                 <div class="form-group row">

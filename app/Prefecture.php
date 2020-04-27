@@ -9,6 +9,11 @@ class Prefecture extends Model
     protected $guarded = array('id');
     
     protected $primaryKey = 'prefecture_id';
+    
+    public function area()
+    {
+        return $this-> belongTo('App\Area', 'area_id');
+    }
 /*
     protected $primaryKey = 'prefecture_id';
     protected $fillable = ['prefecture_name', 'display_order'];
