@@ -25,6 +25,7 @@ class KeijibanController extends Controller
         {
             $posts = Thread::all();
         }
+    
         
         return view('hikari.keijiban.index', ['prefectures' => $prefectures, 'posts' => $posts, 'cond_thread_title' => $cond_thread_title]);
     }
@@ -109,8 +110,10 @@ class KeijibanController extends Controller
 
         $this->validate($request, Toukou::$rules);
         
-        $toukou = new Toukou;
-        $form = $request->all();
+        //$toukou = new Toukou;
+        //$form = $request->all();
+        $thread = Thread::findOrFail($params['thread_id']);
+        $thread->toukou()->create($params);
         
         if (isset($form['image'])) {
             $path = $request->file('image')->store('public/image');
@@ -123,10 +126,10 @@ class KeijibanController extends Controller
         
         unset($form['image']);
         
-        $toukou->fill($form);
-        $toukou->save();
+        //$toukou->fill($form);
+        //$toukou->save();
         
-        return redirect('hikari/keijiban/thread/in');
+        return redirect('hikari/keijiban/thread/in', ['thread' => $thread]);
     }
     
 

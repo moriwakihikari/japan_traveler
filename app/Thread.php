@@ -13,4 +13,9 @@ class Thread extends Model
     public static $rules = array(//一個でvalidationの掛け方分からずauthor_id追加 
         'thread_title' => 'required',
         );
+        
+        public function toukou()
+        {
+            return $this->hasMany('App\Toukou');
+        }
 }

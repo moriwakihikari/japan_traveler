@@ -45,8 +45,11 @@ class BlogController extends Controller
         
         foreach($areaInfo as $area)
         {
-            $areaList[$area->id][] = $area->prefecture();
+            $areaList[$area->area_id][] = $area->prefecture();
         }
+        
+        $areaList = Area::all();
+        dump($areaList); 
         /*$input = $request->input();
         
         $list = $this->blog->getBlogList(self::NUM_PER_PAGE, $input);
@@ -60,7 +63,7 @@ class BlogController extends Controller
         
         
         //$list = $this->prefecture->getPrefectureList(self::NUM_PER_PAGE);*/
-        return view('hikari.blog.index', ['areaInfo' => $areaInfo, 'prefectures' => $prefectures]);         /*compact('list', 'month_list', 'prefecture_list'));*/
+        return view('hikari.blog.index', ['prefectures' => $prefectures, 'areas' => $areaInfo, 'areaList' => $areaList]);         /*compact('list', 'month_list', 'prefecture_list'));*/
     }
     
     public function add()

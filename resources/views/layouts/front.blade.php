@@ -87,7 +87,7 @@
                                     @foreach($prefectures as $val)
                                     <option value="{{ $val->prefecture_id }}">{{ $val->prefecture_name }}</option>
                                     @endforeach
-                                    <input type='submit' value='送信' />
+                                    <input type="button" class="btn btn-primary" value='送信' />
                                 </select>
                             </div>
                             <h2 class="text-title">youtube</h2>

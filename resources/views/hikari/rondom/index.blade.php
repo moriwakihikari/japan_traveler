@@ -11,7 +11,7 @@
                 どこに行こうか迷ったり、罰ゲームで使ったりいろんなことに使ってください。<br>
                 それでは下のボタンを押してください。
                 </h3>
-                <div class="result"><button onclick="location.href='rondom/result'">結果</button></div>
+                <div class="result"><input type="button" class="btn btn-primary" onclick="location.href='rondom/result'" value="結果"></div>
             </div>
         </div>
     </div>

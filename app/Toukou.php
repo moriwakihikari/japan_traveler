@@ -15,8 +15,12 @@ class Toukou extends Model
         'toukou_honbun' => 'required',
         );
         
-        /*public function comments()
+        protected $fillable = [ //複数代入を許可？
+            'toukou_honbun',
+            ];
+        
+        public function thread()
         {
-            return $this->hasMany('App\Comment');
-        }*/
+            return $this->belongsTo('App\Thread');
+        }
 }

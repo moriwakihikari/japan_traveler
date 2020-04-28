@@ -31,23 +31,28 @@
                     <table class="table table-dark">
                         <thead>
                             <tr>
-                                <th width="30%">ID</th>
-                                <th width="70%">タイトル</th>
+                                <th width="10%">ID</th>
+                                <th width="40%">タイトル</th>
+                                <th width="20%">入場</th>
+                                <th width="30%">変更</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($posts as $thread)
                                 <tr>
                                     <th>{{ $thread->thread_id }}</th>
-                                    <td>{{ \Str::limit($thread->thread_title, 100) }}</td>
-                                    <tb>
+                                    <th>{{ \Str::limit($thread->thread_title, 100) }}</th>
+                                    <th>
+                                        <a class="card-link" href="{{ action('Hikari\KeijibanController@in', ['thread_id' => $thread->thread_id]) }}">詳細</a>
+                                    </th>
+                                    <th>
                                         <div>
                                             <a href="{{ action('Hikari\KeijibanController@edit', ['thread_id' => $thread->thread_id]) }}">編集</a>
                                         </div>
                                         <div>
                                             <a href="{{ action('Hikari\KeijibanController@delete', ['thread_id' => $thread->thread_id]) }}">削除</a>
                                         </div>
-                                    </tb>
+                                    </th>
                                 </tr>
                             @endforeach
                         </tbody>
