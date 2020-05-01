@@ -14,6 +14,7 @@ $(function(){
                 })
                 // Ajaxリクエストが成功した時発動
                 .done(function (results) {
+                    alert(results);
                     $("#selected_city option:not(:first-child)").remove(); //optionリセット
                     $("#selected_city").append(results);
                 })

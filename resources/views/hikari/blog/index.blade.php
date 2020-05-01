@@ -8,15 +8,11 @@
                 <form action="{{ action('Hikari\BlogController@index') }}" method="get">
                     <div class="col-md-2">
                         <div clsss="col-md-8" name="area_id">
-                            @foreach($areaList as $val)
-                            <option value="{{ $val->area_id }}">{{ $val->area_name }}</option>
-                            @foreach($areas as $val)
-                            <a href="{{ action('Hikari\BlogController@index') }}">
-                            <option value="{{ $val->prefecture_id }}">{{ $val->prefecture_name }}</option>
-                            </a>
+                            @foreach($prefectures as $val)
+                            {{$val[1]}}
+                            <br>
                             @endforeach
-                            
-                            @endforeach
+                            <a href="{{ action('Hikari\BlogController@prefecture') }}">都道府県</a>
                         </div>
                     </div>
                 </form>

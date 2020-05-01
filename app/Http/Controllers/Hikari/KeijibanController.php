@@ -9,6 +9,7 @@ use App\Toukou;
 use App\Prefecture;
 use App\Thread;
 use App\User;
+use App\Admin;
 
 class KeijibanController extends Controller
 {
@@ -25,16 +26,16 @@ class KeijibanController extends Controller
         {
             $posts = Thread::all();
         }
-    
+        $thread = Thread::all();
         
-        return view('hikari.keijiban.index', ['prefectures' => $prefectures, 'posts' => $posts, 'cond_thread_title' => $cond_thread_title]);
+        return view('hikari.keijiban.index', ['prefectures' => $prefectures, 'posts' => $posts, 'cond_thread_title' => $cond_thread_title, 'thread' => $thread]);
     }
     
     public function add()
     {
         $prefectures = Prefecture::all();
         $users = User::all();
-
+        
         return view('hikari.keijiban.create', ['prefectures' => $prefectures, 'users' => $users]);
     }
     
@@ -52,7 +53,7 @@ class KeijibanController extends Controller
         
         $thread->fill($form);
         $thread->save();
-
+        
         return redirect('hikari/keijiban/index');
     }
     
@@ -63,7 +64,7 @@ class KeijibanController extends Controller
         if (empty($thread)) {
             abort(404);
         }
-
+        
         return view('hikari.keijiban.edit', ['thread_form' => $thread]);
     }
     
@@ -98,23 +99,22 @@ class KeijibanController extends Controller
         } else {
             $posts = Toukou::all();
         }
-
-
-        return view('hikari.keijiban.in', ['prefectures' => $prefectures, 'posts'=> $posts, 'cond_toukou_title' => $cond_toukou_title]);
+        $thread = Thread::all();
+        
+        return view('hikari.keijiban.in', ['prefectures' => $prefectures, 'posts'=> $posts, 'cond_toukou_title' => $cond_toukou_title, 'thread' => $thread]);
     }
        // $toukou = Toukou::orderBy('created_at', 'desc')->get();
-
-    
+       
+       
     public function toukou(Request $request)
     {
-
+        //$threads = Thread::all();
         $this->validate($request, Toukou::$rules);
         
+        $toukou = new Toukou;
+        $form = $request->all();
         //$toukou = new Toukou;
         //$form = $request->all();
-        $thread = Thread::findOrFail($params['thread_id']);
-        $thread->toukou()->create($params);
-        
         if (isset($form['image'])) {
             $path = $request->file('image')->store('public/image');
             $toukou->toukou_image = basename($path);
@@ -126,13 +126,12 @@ class KeijibanController extends Controller
         
         unset($form['image']);
         
-        //$toukou->fill($form);
-        //$toukou->save();
+        $toukou->fill($form);
+        $toukou->save();
         
-        return redirect('hikari/keijiban/thread/in', ['thread' => $thread]);
+        //$thread = Thread::find($request->thread_id);
+        //$thread->toukous()->create($request);
+        
+        return redirect('hikari/keijiban/thread/in'/*, ['thread' => $thread]*/);
     }
-    
-
-    
-    
 }

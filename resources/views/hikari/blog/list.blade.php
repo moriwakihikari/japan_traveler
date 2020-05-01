@@ -41,16 +41,16 @@
                             @foreach($posts as $blog)
                                 <tr>
                                     <th>{{ $blog->blog_id }}</th>
-                                    <td>{{ \Str::limit($blog->blog_title, 100) }}</td>
-                                    <td>{{ \Str::limit($blog->blog_honbun, 250) }}</td>
-                                    <tb>
+                                    <th>{{ \Str::limit($blog->blog_title, 100) }}</th>
+                                    <th>{{ \Str::limit($blog->blog_honbun, 250) }}</th>
+                                    <th>
                                     <div>
                                         <a href="{{ action('Hikari\BlogController@edit', ['blog_id' => $blog->blog_id]) }}">編集</a>
                                     </div>
                                     <div>
                                         <a href="{{ action('Hikari\BlogController@delete', ['blog_id' => $blog->blog_id]) }}">削除</a>
                                     </div>
-                                    </tb>
+                                    </th>
                                 </tr>
                             @endforeach
                         </body>

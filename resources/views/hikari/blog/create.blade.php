@@ -1,10 +1,10 @@
-<script src="{{ secure_asset('js/test.js') }}" defer></script>
-
 @extends('layouts.hikari')
 
 @section('title', 'ブログの新規作成')
 
 @section('content')
+
+<script src="{{ secure_asset('js/test.js') }}" defer></script>
 
 <div class="container">
     <div class="row">
@@ -54,8 +54,6 @@
                 <div>
                     <input type="hidden" name="author_id" value="{{ Auth::id() }}">
                     <input type="hidden" name="changer_id" value="{{ Auth::id() }}">
-                    <input type="hidden" name="creation_date">
-                    <input type="hidden" name="update_date">
                 </div>
                 {{ csrf_field() }}
                 <input type="submit" class="btn btn-primary" value="更新">

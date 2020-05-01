@@ -43,13 +43,12 @@ class BlogController extends Controller
         
         $areaInfo = Area::all();
         
-        foreach($areaInfo as $area)
+        /*foreach($areaInfo as $area)
         {
             $areaList[$area->area_id][] = $area->prefecture();
+            dump($areaList); 
         }
-        
-        $areaList = Area::all();
-        dump($areaList); 
+        */
         /*$input = $request->input();
         
         $list = $this->blog->getBlogList(self::NUM_PER_PAGE, $input);
@@ -63,7 +62,7 @@ class BlogController extends Controller
         
         
         //$list = $this->prefecture->getPrefectureList(self::NUM_PER_PAGE);*/
-        return view('hikari.blog.index', ['prefectures' => $prefectures, 'areas' => $areaInfo, 'areaList' => $areaList]);         /*compact('list', 'month_list', 'prefecture_list'));*/
+        return view('hikari.blog.index', ['prefectures' => $prefectures, 'areas' => $areaInfo, /*'areaList' => $areaList*/]);         /*compact('list', 'month_list', 'prefecture_list'));*/
     }
     
     public function add()
@@ -77,10 +76,10 @@ class BlogController extends Controller
     
     public function selectCity(Request $request)
     {
-        $arr_cities = City::where('prefecture_id', $request->prefecture_id)->get();
+        $arr_cities = City::where('prefecture_id', $request->prefecture)->get();
         $arrOption = array();
         foreach($arr_cities as $city){
-            array_push($arrOption,'<option value="'.$city['city_id'].'">'.$city['city_name'].'</option>');
+            array_push($arrOption, '<option value="'.$city['city_id'].'">'.$city['city_name'].'</option>');
         }
         return $arrOption;
     }
@@ -133,7 +132,7 @@ class BlogController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, Blog::$rules);
-        $blog = Blog::find($request->id);
+        $blog = Blog::find($request->blog_id);
         $blog_form = $request->all();
         if (isset($blog_form['blog_image']))
         {
@@ -154,7 +153,7 @@ class BlogController extends Controller
     
     public function delete(Request $request)
     {
-        $blog = Blog::find($request->id);
+        $blog = Blog::find($request->blog_id);
         $blog->delete();
         
         return redirect('admin/blog/list');
@@ -167,10 +166,18 @@ class BlogController extends Controller
         return view('hikari.blog.prefecture', ['prefectures' => $prefectures]);
     }
     
-    public function city()
+    public function city(Request $request)
     {
         $prefectures = Prefecture::all();
+        
+        $blogs = Blog::all()->sortByDesc('updated_at');
+        
+        if (count($blogs) > 0) {
+            $headline = $blogs->shift();
+        } else {
+            $headline = null;
+        }
 
-        return view('hikari.blog.city', ['prefectures' => $prefectures]);
+        return view('hikari.blog.city', ['prefectures' => $prefectures, 'headline' => $headline, 'blogs' => $blogs]);
     }
 }

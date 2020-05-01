@@ -16,7 +16,11 @@
                     @endforeach
                 </ul>
                 @endif
-                <input name="thread_id" type="hidden" value"{{ $thread->id }}">
+                <div name="thread_id" type="hidden">
+                    @foreach ($thread as $thread)
+                        {{ $thread->thread_id }}
+                    @endforeach
+                </div> 
                 <div class="form-group row">
                     <label class="col-md-2" for="toukou_title">タイトル</label>
                     <div class="col-md-10">

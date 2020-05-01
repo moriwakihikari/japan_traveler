@@ -13,6 +13,9 @@ class Blog extends Model
     public static $rules = array(
         'blog_title' => 'required',
         'blog_honbun' => 'required',
+        'blog_image' => 'required',
+        'prefecture_id' => 'required',
+        'city_id' => 'required',
         'author_id' => 'present',
         );
         
