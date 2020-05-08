@@ -41,14 +41,22 @@ class BlogController extends Controller
     {
         $prefectures = Prefecture::all();
         
+        $prefecturesList = array();
+        
+        $areas = Area::all();
+        
+        foreach($areas as $area){
+            $prefecturesList[$area->area_id] = $area->prefecture;
+        }
+        
         $areaInfo = Area::all();
         
-        /*foreach($areaInfo as $area)
+        $areaList = array();
+        foreach($areaInfo as $area)
         {
             $areaList[$area->area_id][] = $area->prefecture();
-            dump($areaList); 
         }
-        */
+        
         /*$input = $request->input();
         
         $list = $this->blog->getBlogList(self::NUM_PER_PAGE, $input);
@@ -62,7 +70,7 @@ class BlogController extends Controller
         
         
         //$list = $this->prefecture->getPrefectureList(self::NUM_PER_PAGE);*/
-        return view('hikari.blog.index', ['prefectures' => $prefectures, 'areas' => $areaInfo, /*'areaList' => $areaList*/]);         /*compact('list', 'month_list', 'prefecture_list'));*/
+        return view('hikari.blog.index', ['prefectures' => $prefectures, 'areaInfo' => $areaInfo, 'prefecturesList' => $prefecturesList]);         /*compact('list', 'month_list', 'prefecture_list'));*/
     }
     
     public function add()
@@ -162,13 +170,15 @@ class BlogController extends Controller
     public function prefecture()
     {
         $prefectures = Prefecture::all();
+        $cities = City::all();
 
-        return view('hikari.blog.prefecture', ['prefectures' => $prefectures]);
+        return view('hikari.blog.prefecture', ['prefectures' => $prefectures, 'cities' => $cities]);
     }
     
     public function city(Request $request)
     {
         $prefectures = Prefecture::all();
+        $cities = City::all();
         
         $blogs = Blog::all()->sortByDesc('updated_at');
         
@@ -178,6 +188,6 @@ class BlogController extends Controller
             $headline = null;
         }
 
-        return view('hikari.blog.city', ['prefectures' => $prefectures, 'headline' => $headline, 'blogs' => $blogs]);
+        return view('hikari.blog.city', ['prefectures' => $prefectures, 'headline' => $headline, 'blogs' => $blogs, 'cities' => $cities]);
     }
 }

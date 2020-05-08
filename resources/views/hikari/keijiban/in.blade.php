@@ -17,7 +17,7 @@
                 </ul>
                 @endif
                 <div name="thread_id" type="hidden">
-                    @foreach ($thread as $thread)
+                    @foreach($thread as $thread)
                         {{ $thread->thread_id }}
                     @endforeach
                 </div> 

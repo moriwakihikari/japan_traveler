@@ -26,7 +26,7 @@ class KeijibanController extends Controller
         {
             $posts = Thread::all();
         }
-        $thread = Thread::all();
+        $thread = Thread::findOrFail($request);
         
         return view('hikari.keijiban.index', ['prefectures' => $prefectures, 'posts' => $posts, 'cond_thread_title' => $cond_thread_title, 'thread' => $thread]);
     }
@@ -92,6 +92,7 @@ class KeijibanController extends Controller
     public function in(Request $request)
     {
         $prefectures = Prefecture::all();
+
         
         $cond_toukou_title = $request->cond_toukou_title;
         if ($cond_toukou_title != '') {
@@ -101,7 +102,8 @@ class KeijibanController extends Controller
         }
         $thread = Thread::all();
         
-        return view('hikari.keijiban.in', ['prefectures' => $prefectures, 'posts'=> $posts, 'cond_toukou_title' => $cond_toukou_title, 'thread' => $thread]);
+            
+        return view('hikari.keijiban.in', ['prefectures' => $prefectures, 'posts'=> $posts, 'cond_toukou_title' => $cond_toukou_title, 'thread' => $thread/*, 'threadList' => $threadList*/]);
     }
        // $toukou = Toukou::orderBy('created_at', 'desc')->get();
        
@@ -129,8 +131,13 @@ class KeijibanController extends Controller
         $toukou->fill($form);
         $toukou->save();
         
-        //$thread = Thread::find($request->thread_id);
-        //$thread->toukous()->create($request);
+         $params = $request->validate([
+            'thread_id' => 'required|exists:threads,id',
+            'body' => 'required|max:2000',
+            ]);
+            
+        $threadList = Thread::findOrFail($params['thread_id']);
+        $thread->toukous()->create($params);
         
         return redirect('hikari/keijiban/thread/in'/*, ['thread' => $thread]*/);
     }

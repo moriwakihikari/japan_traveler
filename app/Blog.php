@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Blog extends Model
 {
-    protected $guarded = array('id');
+    protected $guarded = array('blog_id');
     
     protected $primaryKey = 'blog_id';
     

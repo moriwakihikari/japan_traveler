@@ -7,12 +7,21 @@
                 <h2>地域ブロック</h2>
                 <form action="{{ action('Hikari\BlogController@index') }}" method="get">
                     <div class="col-md-2">
-                        <div clsss="col-md-8" name="area_id">
-                            @foreach($prefectures as $val)
-                            {{$val[1]}}
-                            <br>
+                        <div class="col-md-8" name="area_id">
+                            @foreach($areaInfo as $val)
+                            <option value="{{ $val->area_id }}">{{ $val->area_name }}</option>
+                            <div clsss="col-md-8" name="prefecturesList">
+                                @foreach($prefecturesList as $prefecture)
+                                    <div clsss="col-md-8" name="prefecture_id">
+                                    @foreach($prefecture as $val)
+                                        <a href="{{ action('Hikari\BlogController@prefecture') }}">
+                                        <option value="{{ $val->prefecture_id }}">{{ $val->prefecture_name }}</option>
+                                        </a>
+                                    @endforeach
+                                    </div>
+                                @endforeach
+                            </div>
                             @endforeach
-                            <a href="{{ action('Hikari\BlogController@prefecture') }}">都道府県</a>
                         </div>
                     </div>
                 </form>

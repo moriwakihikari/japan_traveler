@@ -11,7 +11,7 @@
                         <div class="caption mx-auto">
                             <div class="blog_image">
                                 @if ($headline->blog_image)
-                                <img src="{{ asset('storage/image/' .$headline->blog_image) }}">
+                                <img src="{{ secure_asset('storage/image/' . $headline->blog_image) }}">
                                 @endif
                             </div>
                             <div class="blog_title p-2">
@@ -43,7 +43,7 @@
                                 {{ str_limit($blog->blog_honbun, 1500) }}
                             </div>
                         </div>
-                        <div class="image col-md-6 text-right mx-4">
+                        <div class="blog_image col-md-6 text-right mx-4">
                             @if ($blog->blog_image)
                             <img src="{{ secure_asset('storage/image/' , $blog->blog_image) }}">
                             @endif
