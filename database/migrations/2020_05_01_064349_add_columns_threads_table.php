@@ -26,9 +26,5 @@ class AddColumnsThreadsTable extends Migration
      */
     public function down()
     {
-        Schema::table('threads', function (Blueprint $table)
-        {
-            $table->boolean(['creation_date', 'update_date'])->default(false);
-        });
     }
 }

@@ -16,11 +16,11 @@
                     @endforeach
                 </ul>
                 @endif
-                <div name="thread_id" type="hidden">
-                    @foreach($thread as $thread)
-                        {{ $thread->thread_id }}
-                    @endforeach
-                </div> 
+                <label class="col-md-2">
+                    <div class="col-md-8">
+                        <input type="text" name="thread_id" value="{{ $cond_thread_id }}">
+                    </div>
+                </label>
                 <div class="form-group row">
                     <label class="col-md-2" for="toukou_title">タイトル</label>
                     <div class="col-md-10">
@@ -54,6 +54,7 @@
         <div class="row">
             <div class="list-news col-md-12 mx-auto">
                 <div class="row">
+                    <input type="hidden" name="thread_id" value="{{ $cond_thread_id }}">
                     <table class="table table-dark">
                         <thead>
                             <tr>

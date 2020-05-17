@@ -26,9 +26,5 @@ class AddColumnsArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::table('blogs', function (Blueprint $table)
-        {
-            $table->boolean(['creation_date', 'update_date'])->default(false);
-        });
     }
 }

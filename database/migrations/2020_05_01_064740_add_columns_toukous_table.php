@@ -26,9 +26,5 @@ class AddColumnsToukousTable extends Migration
      */
     public function down()
     {
-        Schema::table('toukous', function (Blueprint $table)
-        {
-            $table->boolean(['creation_date', 'update_date'])->default(false);
-        });
     }
 }

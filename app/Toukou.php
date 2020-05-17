@@ -13,7 +13,7 @@ class Toukou extends Model
     public static $rules = array(
         'toukou_title' => 'required',
         'toukou_honbun' => 'required',
-       // 'thread_id' => 'required',
+        'thread_id' => 'required',
         );
         /*
         protected $fillable = [ //複数代入を許可？
