@@ -18,6 +18,7 @@
 Route::group(['prefix' => 'hikari'], function() {
     Route::get('blog/index', 'Hikari\BlogController@index')->name('blog_index');
     Route::get('blog/prefecture', 'Hikari\BlogController@prefecture');
+    //Route::get('blog/prefecture/{prefecture_id}', 'Hikari\BlogController@prefecture');
     Route::get('blog/prefecture/city', 'Hikari\BlogController@city');
 });
 

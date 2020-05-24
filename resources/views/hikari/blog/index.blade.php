@@ -10,16 +10,14 @@
                         <div clsss="col-md-8" name="area_id">
                             @foreach($areaInfo as $val)
                             <option value = "{{ $val->area_id }}"> {{ $val->area_name }}</option>
-                            <a href="{{ action('Hikari\BlogController@prefecture', ['prefecture_id' => $prefecture->prefecture_id]) }}">あ
                             <?php
                             $prefectureList2 = array();
                             $prefectureList2 = $prefecturesList[ $val->area_id ];
                             foreach($prefectureList2 as $a){
-                                echo"<a href="."prefecture".">$a->prefecture_name</a>";
+                            echo"<a href="."prefecture?prefecture_id=$a->prefecture_id".">$a->prefecture_name</a>";
                             }
                             ?>
                             <br>
-                            </a>
                             @endforeach
                         </div>
                     </div>
