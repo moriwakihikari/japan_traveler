@@ -14,6 +14,11 @@ class Prefecture extends Model
     {
         return $this-> belongTo('App\Area', 'area_id');
     }
+    
+    public function city()
+    {
+        return $this->hasMany('App\City');
+    }
 /*
     protected $primaryKey = 'prefecture_id';
     protected $fillable = ['prefecture_name', 'display_order'];

@@ -17,12 +17,6 @@
 
 Route::group(['prefix' => 'hikari'], function() {
     Route::get('blog/index', 'Hikari\BlogController@index')->name('blog_index');
-    //adminに移動（下）
-    //Route::get('blog/create', 'Hikari\BlogController@add');//->middleware('auth');
-    //Route::post('blog/create', 'Hikari\BlogController@create');//->middleware('auth');
-    //Route::get('blog/list', 'Hikari\BlogController@list');
-    //Route::get('blog/edit', 'Hikari\BlogController@edit');//->middleware('auth');
-    //Route::post('blog/edit', 'Hikari\BlogController@update');//->middleware('auth');
     Route::get('blog/prefecture', 'Hikari\BlogController@prefecture');
     Route::get('blog/prefecture/city', 'Hikari\BlogController@city');
 });

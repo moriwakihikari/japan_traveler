@@ -28,11 +28,10 @@
         <div class="row">
             <div class="list-news col-md-12 mx-auto">
                 <div class="row">
-                    <table class="table table-dark">
-                        <thead>
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
                             <tr>
-                                <th width="10%">ID</th>
-                                <th width="40%">タイトル</th>
+                                <th width="50%">タイトル</th>
                                 <th width="20%">入場</th>
                                 <th width="30%">変更</th>
                             </tr>
@@ -40,7 +39,6 @@
                         <tbody>
                             @foreach($posts as $thread)
                                 <tr>
-                                    <th>{{ $thread->thread_id }}</th>
                                     <th>{{ \Str::limit($thread->thread_title, 100) }}</th>
                                     <th>
                                         <a class="card-link" href="{{ action('Hikari\KeijibanController@in', ['thread_id' => $thread->thread_id]) }}">詳細</a>

@@ -9,4 +9,10 @@ class City extends Model
     protected $guarded = array('city_id');
     
     protected $primaryKey = 'city_id';
+    
+    public function prefecture()
+    {
+        return $this->belongsTo('App\Prefecture');
+    }
 }
+

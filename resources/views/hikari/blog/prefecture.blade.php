@@ -5,9 +5,10 @@
         <div class="row">
             <div class="posts col-md-8 mx-auto mt-3">
                 <h2>prefecture</h2>
+                <input type="hidden" name="prefecture_id" value="{{ $cond_prefecture_id }}">
                 <div class="col-md-8" name="cities_id">
-                    <a href="{{ action('Hikari\BlogController@city') }}">
-                        @foreach($cities as $val)
+                        @foreach($prefecture_id as $val)
+                        <a href="{{ action('Hikari\BlogController@city', ['city_id' => $cities->city_id]) }}">
                         <option value="{{ $val->city_id }}">{{ $val->city_name }}</option>
                         @endforeach
                     </a>

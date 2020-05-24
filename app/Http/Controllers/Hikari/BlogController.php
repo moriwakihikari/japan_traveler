@@ -37,9 +37,12 @@ class BlogController extends Controller
         $this->prefecture = $prefecture;
     }*/
     
-    public function index()
+    public function index(Request $request)
     {
         $prefectures = Prefecture::all();
+        
+        $prefecture = Prefecture::first();
+
         
         $prefecturesList = array();
         
@@ -57,6 +60,8 @@ class BlogController extends Controller
             $areaList[$area->area_id][] = $area->prefecture();
         }
         
+        $cond_prefecture_id = $request->prefecture_id;
+        $prefecture_id = City::where('prefecture_id', $cond_prefecture_id)->get();
         /*$input = $request->input();
         
         $list = $this->blog->getBlogList(self::NUM_PER_PAGE, $input);
@@ -70,7 +75,7 @@ class BlogController extends Controller
         
         
         //$list = $this->prefecture->getPrefectureList(self::NUM_PER_PAGE);*/
-        return view('hikari.blog.index', ['prefectures' => $prefectures, 'areaInfo' => $areaInfo, 'prefecturesList' => $prefecturesList]);         /*compact('list', 'month_list', 'prefecture_list'));*/
+        return view('hikari.blog.index', ['prefectures' => $prefectures, 'prefecture' =>$prefecture, 'areaInfo' => $areaInfo, 'prefecturesList' => $prefecturesList, 'cond_prefecture_id' => $cond_prefecture_id]);         /*compact('list', 'month_list', 'prefecture_list'));*/
     }
     
     public function add()
@@ -130,7 +135,7 @@ class BlogController extends Controller
     
     public function edit(Request $request)
     {
-        $blog = Blog::find($request->id);
+        $blog = Blog::find($request->blog_id);
         if (empty($blog)) {
             abort(404);
         }
@@ -167,27 +172,31 @@ class BlogController extends Controller
         return redirect('admin/blog/list');
     }
     
-    public function prefecture()
+    public function prefecture(Request $request)
     {
         $prefectures = Prefecture::all();
-        $cities = City::all();
-
-        return view('hikari.blog.prefecture', ['prefectures' => $prefectures, 'cities' => $cities]);
+        $cities = City::first();
+        
+        $cond_prefecture_id = $request->prefecture_id;
+        $prefecture_id = City::where('prefecture_id', $cond_prefecture_id)->get();
+        
+        return view('hikari.blog.prefecture', ['prefectures' => $prefectures, 'cities' => $cities, 'prefecture_id' => $prefecture_id, 'cond_prefecture_id' => $cond_prefecture_id]);
     }
     
     public function city(Request $request)
     {
         $prefectures = Prefecture::all();
-        $cities = City::all();
-        
-        $blogs = Blog::all()->sortByDesc('updated_at');
+        //$cities = City::all();
+        $cond_city_id = $request->city_id;
+        $blogs = Blog::where('city_id', $cond_city_id)->get();
         
         if (count($blogs) > 0) {
             $headline = $blogs->shift();
         } else {
             $headline = null;
         }
+        
 
-        return view('hikari.blog.city', ['prefectures' => $prefectures, 'headline' => $headline, 'blogs' => $blogs, 'cities' => $cities]);
+        return view('hikari.blog.city', ['prefectures' => $prefectures, 'headline' => $headline, 'blogs' => $blogs, 'cond_city_id' =>$cond_city_id]);
     }
 }

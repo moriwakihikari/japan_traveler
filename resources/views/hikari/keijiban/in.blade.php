@@ -18,7 +18,7 @@
                 @endif
                 <label class="col-md-2">
                     <div class="col-md-8">
-                        <input type="text" name="thread_id" value="{{ $cond_thread_id }}">
+                        <input type="hidden" name="thread_id" value="{{ $cond_thread_id }}">
                     </div>
                 </label>
                 <div class="form-group row">
@@ -49,33 +49,57 @@
         </div>
     </div>
         <div class="row">
-            <h2>記事一覧</h2>
+            <h2>投稿</h2>
         </div>
+    <hr color="#c0c0c0">
         <div class="row">
-            <div class="list-news col-md-12 mx-auto">
-                <div class="row">
-                    <input type="hidden" name="thread_id" value="{{ $cond_thread_id }}">
-                    <table class="table table-dark">
-                        <thead>
-                            <tr>
-                                <th width="10%">ID</th>
-                                <th width="20%">タイトル</th>
-                                <th width="50%">本文</th>
-                                <th width="10%">操作</th>
-                            </tr>
-                        </thead>
-                        <body>
-                            @foreach($posts as $toukou)
-                                <tr>
-                                    <th>{{ $toukou->toukou_id }}</th>
-                                    <td>{{ \Str::limit($toukou->toukou_title, 100) }}</td>
-                                    <td>{{ \Str::limit($toukou->toukou_honbun, 250) }}</td>
-                                </tr>
-                            @endforeach
-                        </body>
-                    </table>
+            <input type="hidden" name="thread_id" value="{{ $cond_thread_id }}">
+            <div class="blogs col-md-8 mx-auto mt-3">
+                @foreach ($posts as $toukou)
+                <div class="post">
+                    <div class="row">
+                        <div class="text col-md-6">
+                            <div class="toukou_title">
+                                {{ str_limit($toukou->toukou_title, 150) }}
+                            </div>
+                            <div class="toukou_honbun mt-3">
+                                {{ str_limit($toukou->toukou_honbun, 500) }}
+                            </div>
+                        </div>
+                        <div class="toukou_image col-md-6 text-right mx-4">
+                            @if ($toukou->toukou_image)
+                            <img src="{{ secure_asset('storage/image/' , $toukou->toukou_image) }}">
+                            @endif
+                        </div>
+                    </div>
                 </div>
+                <hr color="#c0c0c0">
+                @endforeach
             </div>
         </div>
+    <div class="row">
+        <div class="list-news col-md-12 mx-auto">
+            <div class="row">
+                <input type="hidden" name="thread_id" value="{{ $cond_thread_id }}">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th width="30%">タイトル</th>
+                            <th width="50%">本文</th>
+                            <th width="20%">操作</th>
+                        </tr>
+                    </thead>
+                    <body>
+                        @foreach($posts as $toukou)
+                        <tr>
+                            <td>{{ \Str::limit($toukou->toukou_title, 100) }}</td>
+                            <td>{{ \Str::limit($toukou->toukou_honbun, 250) }}</td>
+                        </tr>
+                        @endforeach
+                    </body>
+                </table>
+            </div>
+        </div>
+    </div>
     </div>
 @endsection
