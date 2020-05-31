@@ -23,6 +23,11 @@ class Blog extends Model
         {
             return $this->belongsTo(User::Class, 'author_id');
         }
+        
+        public function city()
+        {
+            return $this->belongsTo('App\City');
+        }
         /*
         public function messages()
         {

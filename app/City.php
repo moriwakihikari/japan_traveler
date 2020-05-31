@@ -12,7 +12,12 @@ class City extends Model
     
     public function prefecture()
     {
-        return $this->belongsTo('App\Prefecture');
+        return $this->belongTo('App\Prefecture');
+    }
+    
+    public function blog()
+    {
+        return $this->hasMany('App\Blog');
     }
 }
 

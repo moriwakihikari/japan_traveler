@@ -12,7 +12,7 @@ class Prefecture extends Model
     
     public function area()
     {
-        return $this-> belongTo('App\Area', 'area_id');
+        return $this->belongTo('App\Area', 'area_id');
     }
     
     public function city()
