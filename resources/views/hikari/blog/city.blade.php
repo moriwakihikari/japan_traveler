@@ -12,7 +12,7 @@
                         <div class="caption mx-auto">
                             <div class="blog_image">
                                 @if ($headline->blog_image)
-                                <img src="{{ asset('storage/image' .$headline->blog_image) }}">
+                                <img src="{{ secure_asset('storage/image/' .$headline->blog_image) }}">
                                 @endif
                             </div>
                             <div class="blog_title p-2">
@@ -35,6 +35,9 @@
                 <div class="post">
                     <div class="row">
                         <div class="text col-md-6">
+                            <div class="date">
+                                {{ $blog->updated_at->format('Y年m月d日') }}
+                            </div>
                             <div class="blog_title">
                                 {{ str_limit($blog->blog_title, 150) }}
                             </div>
@@ -44,7 +47,7 @@
                         </div>
                         <div class="blog_image col-md-6 text-right mx-4">
                             @if ($blog->blog_image)
-                            <img src="{{ secure_asset('storage/image' , $blog->blog_image) }}">
+                            <img src="{{ secure_asset('storage/image/' .$blog->blog_image) }}">
                             @endif
                         </div>
                     </div>

@@ -115,8 +115,8 @@ class KeijibanController extends Controller
         $form = $request->all();
         //$toukou = new Toukou;
         //$form = $request->all();
-        if (isset($form['image'])) {
-            $path = $request->file('image')->store('public/image');
+        if (isset($form['toukou_image'])) {
+            $path = $request->file('toukou_image')->store('public/image');
             $toukou->toukou_image = basename($path);
         } else {
             $toukou->toukou_image = null;
@@ -124,7 +124,7 @@ class KeijibanController extends Controller
         
         unset($form['_token']);
         
-        unset($form['image']);
+        unset($form['toukou_image']);
         
         $toukou->fill($form);
         $toukou->save();

@@ -22,6 +22,7 @@
                 <div>
                     <p>都道府県選択</p>
                     <select id="select_prefecture" class="form-control" name="prefecture_id">
+                        <option value="">--選択してください--</option>
                         @foreach($prefectures as $val)
                         <option value="{{ $val->prefecture_id }}">{{ $val->prefecture_name }}</option>
                         @endforeach

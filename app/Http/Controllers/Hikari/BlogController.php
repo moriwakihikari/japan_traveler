@@ -102,8 +102,12 @@ class BlogController extends Controller
         $blog = new Blog;
         $form = $request->all();
         
-        if (isset($form['image'])) {
-            $path = $request->file('image')->store('storage/image');
+        if (isset($form['blog_image'])) {
+            // $imagefile = $request->file('blog_image');
+            // $path = $imagefile->store('storage/image');
+        // dd($request->file('blog_image'));            
+        $path = $request->file('blog_image')->store('public/image');
+            // dd($path);
             $blog->blog_image = basename($path);
         } else {
             $blog->blog_image = null;
@@ -111,7 +115,7 @@ class BlogController extends Controller
         
         unset($form['_token']);
         
-        unset($form['image']);
+        unset($form['blog_image']);
         
         $blog->fill($form);
         $blog->save();
