@@ -91,7 +91,7 @@ class BlogController extends Controller
         $arrOption = array();
         foreach($arr_cities as $city){
             array_push($arrOption, '<option value="'.$city['city_id'].'">'.$city['city_name'].'</option>');
-        }
+        }//heroku logs -tでjquary動き確認
         return $arrOption;
     }
     

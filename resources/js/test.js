@@ -6,7 +6,7 @@ $(function(){
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url:'/admin//blog/selected_prefecture',
+                    url:'/admin/blog/selected_prefecture',
                     type:'POST',
                     data:{
                         prefecture: $(this).val()
