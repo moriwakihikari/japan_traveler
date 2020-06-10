@@ -14,13 +14,13 @@
                     <!--スライドさせる画像の設定 -->
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="{{ ('hokkaidou.jpeg') }}">
+                            <img src="{{ secure_asset('storage/image/hokkaidou.jpeg') }}">
                         </div><!-- /.carousel-item -->
                         <div class="carousel-item">
-                            <img src="{{ ('hokkaidou.jpeg') }}">
+                            <img src="{{ secure_asset('storage/image/hokkaidou.jpeg') }}">
                         </div><!-- /.carousel-item -->
                         <div class="carousel-item">
-                            <img src="{{ ('hokkaidou.jpeg') }}">
+                            <img src="{{ secure_asset('storage/image/hokkaidou.jpeg') }}">
                         </div><!-- /.carousel-item -->
                     </div><!-- /.carousel-inner -->
                     <!--スライドコントロールの設定 -->
