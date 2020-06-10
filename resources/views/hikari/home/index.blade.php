@@ -14,32 +14,20 @@
                     <!--スライドさせる画像の設定 -->
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="{{ secure_asset('storage/image/hokkaidou.jpeg') }}">
+                            <img src="{{ ('hokkaidou.jpeg') }}">
                         </div><!-- /.carousel-item -->
                         <div class="carousel-item">
-                            <img src="{{ secure_asset('storage/image/hokkaidou.jpeg') }}">
+                            <img src="{{ ('hokkaidou.jpeg') }}">
                         </div><!-- /.carousel-item -->
                         <div class="carousel-item">
-                            <img src="{{ secure_asset('storage/image/hokkaidou.jpeg') }}">
+                            <img src="{{ ('hokkaidou.jpeg') }}">
                         </div><!-- /.carousel-item -->
                     </div><!-- /.carousel-inner -->
                     <!--スライドコントロールの設定 -->
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev"></a>
                     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next"></a>
                 </div>
-                <!--<div class="carousel slide" data-ride="carousel" style="width:400px">-->
-                <!--    <div class="carousel-inner">-->
-                <!--        <div class="carousel-item active">-->
-                <!--            <img src="plaWWd32Zo8bQy3LbXEZVPoGN4iOAbWn5CoyD1pK.jpeg" alt="First slide">-->
-                <!--        </div>-->
-                <!--        <div class="carousel-item">-->
-                <!--            <img src="slide2.png" alt="Second slide">-->
-                <!--        </div>-->
-                <!--        <div class="carousel-item">-->
-                <!--            <img src="slide3.png" alt="Third slide">-->
-                <!--        </div>-->
-                <!--    </div>-->
-                <!--</div>-->
+               
                 <h2>Home</h2>
                 <h3>こちらのサイトは筆者が実際に行った場所のまとめサイトであり、それをおすすめするサイトであります。あなたの旅の参考になれば幸いです。</h3>
             </div>

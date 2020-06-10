@@ -10,6 +10,7 @@ use App\Prefecture;
 use App\Area;
 use App\City;
 use App\Admin;
+use Storage;
 
 class BlogController extends Controller
 {
@@ -106,9 +107,9 @@ class BlogController extends Controller
             // $imagefile = $request->file('blog_image');
             // $path = $imagefile->store('storage/image');
         // dd($request->file('blog_image'));            
-        $path = $request->file('blog_image')->store('public/image');
+        $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
             // dd($path);
-            $blog->blog_image = basename($path);
+            $blog->blog_image = Storage::disk('s3')->url($path);
         } else {
             $blog->blog_image = null;
         }
@@ -150,8 +151,8 @@ class BlogController extends Controller
         $blog_form = $request->all();
         if (isset($blog_form['blog_image']))
         {
-            $path = $request->file('blog_image')->store('public/image');
-            $blog->image_path = basename($path);
+            $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
+            $blog->blog_image = Storage::disk('s3')->url($path);
             unset($blog_form['blog_image']);
         }elseif(isset($request->remove))
         {

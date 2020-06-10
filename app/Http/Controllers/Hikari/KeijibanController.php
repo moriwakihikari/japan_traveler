@@ -10,6 +10,7 @@ use App\Prefecture;
 use App\Thread;
 use App\User;
 use App\Admin;
+use Storage;
 
 class KeijibanController extends Controller
 {
@@ -116,8 +117,8 @@ class KeijibanController extends Controller
         //$toukou = new Toukou;
         //$form = $request->all();
         if (isset($form['toukou_image'])) {
-            $path = $request->file('toukou_image')->store('public/image');
-            $toukou->toukou_image = basename($path);
+            $path = Storage::disk('s3')->putFile('/',$form['toukou_image'],'public');
+            $toukou->toukou_image = Storage::disk('s3')->url($path);
         } else {
             $toukou->toukou_image = null;
         }

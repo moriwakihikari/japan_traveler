@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Prefecture;
 use App\Blog;
+use Storage;
 
 class HomeController extends Controller
 {

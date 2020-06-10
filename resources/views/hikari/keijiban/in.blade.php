@@ -68,7 +68,7 @@
                         </div>
                         <div class="toukou_image col-md-6 text-right mx-4">
                             @if ($toukou->toukou_image)
-                            <img src="{{ secure_asset('storage/image/' .$toukou->toukou_image) }}">
+                            <img src="{{ $toukou->toukou_image }}">
                             @endif
                         </div>
                     </div>

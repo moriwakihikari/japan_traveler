@@ -14,7 +14,7 @@
                             $prefectureList2 = array();
                             $prefectureList2 = $prefecturesList[ $val->area_id ];
                             foreach($prefectureList2 as $a){
-                            echo"<a href="."prefecture?prefecture_id=$a->prefecture_id".">$a->prefecture_name</a>";
+                            echo"<a href="."prefecture?prefecture_id=$a->prefecture_id".">$a->prefecture_name<br></a>";
                             }
                             ?>
                             <br>
