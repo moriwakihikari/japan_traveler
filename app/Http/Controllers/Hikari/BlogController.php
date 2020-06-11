@@ -107,7 +107,7 @@ class BlogController extends Controller
             // $imagefile = $request->file('blog_image');
             // $path = $imagefile->store('storage/image');
         // dd($request->file('blog_image'));            
-        $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
+        $path = Storage::disk('s3')->putFile('/',$form['blog_image'],'public');
             // dd($path);
             $blog->blog_image = Storage::disk('s3')->url($path);
         } else {
@@ -121,7 +121,7 @@ class BlogController extends Controller
         $blog->fill($form);
         $blog->save();
         
-        return redirect('admin/blog/list');
+        return redirect('admin/blog/list');//redirctに連想配列は使えない
     }
     
     public function list(Request $request)
@@ -141,7 +141,7 @@ class BlogController extends Controller
         if (empty($blog)) {
             abort(404);
         }
-        return view('hikari.blog.edit', ['blog_form' => $blog]);//redirctに連想配列は使えない
+        return view('hikari.blog.edit', ['blog_form' => $blog]);
     }
     
     public function update(Request $request)
@@ -151,7 +151,7 @@ class BlogController extends Controller
         $blog_form = $request->all();
         if (isset($blog_form['blog_image']))
         {
-            $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
+            $path = Storage::disk('s3')->putFile('/',$form['blog_image'],'public');
             $blog->blog_image = Storage::disk('s3')->url($path);
             unset($blog_form['blog_image']);
         }elseif(isset($request->remove))
