@@ -77,29 +77,31 @@
                 @endforeach
             </div>
         </div>
-    <div class="row">
-        <div class="list-news col-md-12 mx-auto">
-            <div class="row">
-                <input type="hidden" name="thread_id" value="{{ $cond_thread_id }}">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th width="30%">タイトル</th>
-                            <th width="50%">本文</th>
-                            <th width="20%">操作</th>
-                        </tr>
-                    </thead>
-                    <body>
-                        @foreach($posts as $toukou)
-                        <tr>
-                            <td>{{ \Str::limit($toukou->toukou_title, 100) }}</td>
-                            <td>{{ \Str::limit($toukou->toukou_honbun, 250) }}</td>
-                        </tr>
-                        @endforeach
-                    </body>
-                </table>
-            </div>
-        </div>
+    <!--<div class="row">-->
+    <!--    <div class="list-news col-md-12 mx-auto">-->
+    <!--        <div class="row">-->
+    <!--            <input type="hidden" name="thread_id" value="{{ $cond_thread_id }}">-->
+    <!--            <table class="table table-hover">-->
+    <!--                <thead>-->
+    <!--                    <tr>-->
+    <!--                        <th width="30%">タイトル</th>-->
+    <!--                        <th width="50%">本文</th>-->
+    <!--                        <th width="20%">操作</th>-->
+    <!--                    </tr>-->
+    <!--                </thead>-->
+    <!--                <body>-->
+    <!--                    @foreach($posts as $toukou)-->
+    <!--                    <tr>-->
+    <!--                        <td>{{ \Str::limit($toukou->toukou_title, 100) }}</td>-->
+    <!--                        <td>{{ \Str::limit($toukou->toukou_honbun, 250) }}</td>-->
+    <!--                    </tr>-->
+    <!--                    @endforeach-->
+    <!--                </body>-->
+    <!--            </table>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</div>-->
     </div>
-    </div>
+<div class="return"><input type="button"class="btn btn-primary" onclick="history.back()" value="戻る"></div>
+
 @endsection

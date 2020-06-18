@@ -13,6 +13,7 @@
                             <option value="{{ $val->city_id }}">{{ $val->city_name }}</option>
                             </a>
                         @endforeach
+                        <div class="return"><input type="button"class="btn btn-primary" onclick="history.back()" value="戻る"></div>
                     </div>
                 </form>
             </div>

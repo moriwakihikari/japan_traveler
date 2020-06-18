@@ -87,7 +87,9 @@
                                     @foreach($prefectures as $val)
                                     <option value="{{ $val->prefecture_id }}">{{ $val->prefecture_name }}</option>
                                     @endforeach
-                                    <input type="button" class="btn btn-primary" value='送信' />
+                                    <a href="{{ action('Hikari\BlogController@city', ['city_id' => $val->city_id]) }}">
+                                    <input type="button" class="btn btn-primary" value='送信'>
+                                    </a>
                                 </select>
                             </div>
                             <h2 class="text-title">youtube</h2>
