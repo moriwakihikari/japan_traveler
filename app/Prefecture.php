@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Prefecture extends Model
 {
-    protected $guarded = array('prefecture_id');
+    // protected $guarded = array('prefecture_id');
     
     protected $primaryKey = 'prefecture_id';
     

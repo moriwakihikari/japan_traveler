@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-8 mx-auto">
             <h2>ブログ編集</h2>
-            <form action="{{ action('Hikari\BlogController@update') }}" method="post" enctype="multipart/form-data">
+            <form id="select_prefecture_city" action="{{ action('Hikari\BlogController@update') }}" method="post" enctype="multipart/form-data">
                 @if (count($errors) > 0)
                 <ul>
                     @foreach($errors->all() as $e)
@@ -15,6 +15,22 @@
                     @endforeach
                 </ul>
                 @endif
+                    {{ csrf_field() }}
+                <div>
+                    <p>都道府県選択</p>
+                    <select id="select_prefecture" class="form-control" name="prefecture_id">
+                        <option value="">--選択してください--</option>
+                        @foreach($prefectures as $val)
+                        <option value="{{ $val->prefecture_id }}">{{ $val->prefecture_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div>
+                    <p>市選択</p>
+                    <select id="selected_city" class="form-control" name="city_id">
+                        <option value="">--選択してください--</option>
+                    </select>
+                </div>
                 <div class="form-group row">
                     <label class="col-md-2" for="blog_title">タイトル</label>
                     <div class="col-md-10">
@@ -40,6 +56,12 @@
                             </label>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <input type="hidden" name="author_id" value="{{ Auth::id() }}">
+                    <input type="hidden" name="changer_id" value="{{ Auth::id() }}">
+                    <!--<input type="hidden" name="prefecture_id" value="{{ $prefectures->prefecture_id }}">-->
+                    <!--<input type="hidden" name="city_id" value="{{ $cities->city_id }}">-->
                 </div>
                 <div class="form-group row">
                     <div class="col-md-10">

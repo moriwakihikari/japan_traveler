@@ -137,11 +137,15 @@ class BlogController extends Controller
     
     public function edit(Request $request)
     {
+        $prefectures = Prefecture::all();
+        $cities = City::all();
+        // dd($prefectures);
+        
         $blog = Blog::find($request->blog_id);
         if (empty($blog)) {
             abort(404);
         }
-        return view('hikari.blog.edit', ['blog_form' => $blog]);
+        return view('hikari.blog.edit', ['blog_form' => $blog,'prefectures' => $prefectures,'cities' => $cities]);
     }
     
     public function update(Request $request)
