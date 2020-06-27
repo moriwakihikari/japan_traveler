@@ -14,16 +14,16 @@ use Storage;
 
 class BlogController extends Controller
 {
-    public function saveBlog(Request $request)
-    {
-        $data = $request->validate([]);
+    // public function saveBlog(Request $request)
+    // {
+    //     $data = $request->validate([]);
         
-        $blog = new Blog();
-        $blog->fill($data);
-        $blog->author()->associate(\Admin::user());
-        $blog->save();
-        return view('hikari.blog.create');
-    }
+    //     $blog = new Blog();
+    //     $blog->fill($data);
+    //     $blog->author()->associate(\Admin::user());
+    //     $blog->save();
+    //     return view('hikari.blog.create');
+    // }
     
     /*protected $blog;
     protected $prefecture;

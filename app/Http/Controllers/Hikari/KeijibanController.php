@@ -20,21 +20,19 @@ class KeijibanController extends Controller
         $prefectures = Prefecture::all();
         
         $cond_thread_title = $request->cond_thread_title;
-        if ($cond_thread_title !='')
-        {
+        if ($cond_thread_title !='') {
             $posts = Thread::where('thread_title', $cond_thread_title)->get();
-        } else 
-        {
+        } else {
             $posts = Thread::all();
         }
         
         $thread = Thread::findOrFail($request);
         
-        $cond_thread_id = $request->thread_id;
-        $thread_id = Toukou::where('thread_id', $cond_thread_id)->get();
+        // $cond_thread_id = $request->thread_id;
+        // $thread_id = Toukou::where('thread_id', $cond_thread_id)->get();
         
         
-        return view('hikari.keijiban.index', ['prefectures' => $prefectures, 'posts' => $posts, 'cond_thread_title' => $cond_thread_title, 'thread' => $thread, 'cond_thread_id' => $cond_thread_id]);
+        return view('hikari.keijiban.index', ['prefectures' => $prefectures, 'posts' => $posts, 'cond_thread_title' => $cond_thread_title, 'thread' => $thread]);
     }
     
     public function add()

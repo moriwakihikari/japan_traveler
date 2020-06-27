@@ -88,7 +88,7 @@
                                     @foreach($prefectures as $val)
                                     <option value="{{ $val->prefecture_id }}">{{ $val->prefecture_name }}</option>
                                     @endforeach
-                                    <!--{{ csrf_field() }}-->
+                                    {{ csrf_field() }}
                                     <input type="submit" class="btn btn-primary" value='送信'>
                                 </select>
                             </div>
