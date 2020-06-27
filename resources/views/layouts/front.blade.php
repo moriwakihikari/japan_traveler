@@ -69,29 +69,30 @@
                     </div>
                     <div class="right-contents">
                         <div class="card-contents">
-                           {{-- <h2 class="panel-title">カテゴリー</h2>
-                            <ul class="monthly_archive">
-                                @forelse(isset($prefecture_list as $prefecture))
-                                <li>
-                                    <a href="{{ route('blog_index', ['prefecture_id' => $prefecture->prefecture_id]) }}">
-                                    {{ $prefecture->name }}
-                                    </a>
-                                </li>
-                                @empty
-                                <p>カテゴリーがありません</p>
-                                @endforelse
-                            </ul>--}}
+                           <!--{{-- <h2 class="panel-title">カテゴリー</h2>-->
+                           <!-- <ul class="monthly_archive">-->
+                           <!--     @forelse(isset($prefecture_list as $prefecture))-->
+                           <!--     <li>-->
+                           <!--         <a href="{{ route('blog_index', ['prefecture_id' => $prefecture->prefecture_id]) }}">-->
+                           <!--         {{ $prefecture->name }}-->
+                           <!--         </a>-->
+                           <!--     </li>-->
+                           <!--     @empty-->
+                           <!--     <p>カテゴリーがありません</p>-->
+                           <!--     @endforelse-->
+                           <!-- </ul>--}}-->
+                        <form action="{{ action('Hikari\BlogController@prefecture') }}" method="get" enctype="multipart/form-data">
                             <div clsss="dropdown">
                                 <h2 class="text-title">検索</h2>
-                                <select class="form-control" name="prefecture">
+                                <select class="form-control" name="prefecture_id">
                                     @foreach($prefectures as $val)
                                     <option value="{{ $val->prefecture_id }}">{{ $val->prefecture_name }}</option>
                                     @endforeach
-                                    <a href="{{ action('Hikari\BlogController@city', ['city_id' => $val->city_id]) }}">
-                                    <input type="button" class="btn btn-primary" value='送信'>
-                                    </a>
+                                    <!--{{ csrf_field() }}-->
+                                    <input type="submit" class="btn btn-primary" value='送信'>
                                 </select>
                             </div>
+                        </form>
                             <h2 class="text-title">youtube</h2>
                             <iframe width="100" height="100" src="https://www.youtube.com/embed/lHIYBDbQmj8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>

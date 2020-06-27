@@ -11,7 +11,7 @@
                 <a href="{{ action('Hikari\BlogController@add') }}" role="button" class="btn btn-primary">新規作成</a>
             </div>
             <div class="col-md-8">
-                <form action="{{ action('Hikari\BlogController@index') }}" method="get">
+                <form action="{{ action('Hikari\BlogController@list') }}" method="get">
                     <div class="form-group row">
                         <label class="col-md-2">タイトル</label>
                         <div class="col-md-8">
