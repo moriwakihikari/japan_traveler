@@ -95,7 +95,7 @@ return [
     'numeric' => 'The :attribute must be a number.',
     'present' => 'The :attribute field must be present.',
     'regex' => 'The :attribute format is invalid.',
-    'required' => 'The :attribute に入力が必要です。',
+    'required' => ':attributeを入力してください。',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
     'required_with' => 'The :attribute field is required when :values is present.',
@@ -146,8 +146,14 @@ return [
     */
 
     'attributes' => [
-        'title' => 'タイトル',
-        'body' => '本文'
+        'blog_title' => 'タイトル',
+        'thread_title' => 'タイトル',
+        'toukou_title' => 'タイトル',
+        'blog_honbun' => '本文',
+        'blog_image' => '画像',
+        'prefecture_id' => '都道府県',
+        'city_id' => '市町村',
+        'toukou_honbun' => '本文',
         ],
 
 ];

@@ -26,7 +26,7 @@
                 <div class="container">
                     <ul class="header-title-area">
                         <li><h1 class="logo">日本の名所</h1></li>
-                        <li><p class="text-sub">~自転車日本一周~</p></li>
+                        <li><p class="text-sub">~自転車日本一周~<a class="text-sub" href="{{ action('Admin\Auth\LoginController@showLoginForm') }}">.</a></p></li>
                     </ul>
                     <ul class="navbar-nav-right">
                         @guest

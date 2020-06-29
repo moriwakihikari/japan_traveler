@@ -16,7 +16,7 @@ class CreateToukousTable extends Migration
         Schema::create('toukous', function (Blueprint $table) {
             $table->bigIncrements('toukou_id');
             $table->string('toukou_title');
-            $table->string('toukou_image');
+            $table->string('toukou_image')->nullable();
             $table->string('toukou_honbun');
             $table->integer('thread_id');
             $table->string('author_id');

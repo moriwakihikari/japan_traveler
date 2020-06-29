@@ -20,13 +20,14 @@ class KeijibanController extends Controller
         $prefectures = Prefecture::all();
         
         $cond_thread_title = $request->cond_thread_title;
-        if ($cond_thread_title !='') {
+        if ($cond_thread_title != '') {
             $posts = Thread::where('thread_title', $cond_thread_title)->get();
         } else {
             $posts = Thread::all();
         }
         
-        $thread = Thread::findOrFail($request);
+        //$thread = Thread::findOrFail($request);
+        $thread = Thread::all();
         
         // $cond_thread_id = $request->thread_id;
         // $thread_id = Toukou::where('thread_id', $cond_thread_id)->get();

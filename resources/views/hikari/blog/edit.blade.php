@@ -3,6 +3,9 @@
 @section('title', '編集')
 
 @section('content')
+
+<script src="{{ secure_asset('js/test.js') }}" defer></script>
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 mx-auto">
@@ -60,8 +63,6 @@
                 <div>
                     <input type="hidden" name="author_id" value="{{ Auth::id() }}">
                     <input type="hidden" name="changer_id" value="{{ Auth::id() }}">
-                    <!--<input type="hidden" name="prefecture_id" value="{{ $prefectures->prefecture_id }}">-->
-                    <!--<input type="hidden" name="city_id" value="{{ $cities->city_id }}">-->
                 </div>
                 <div class="form-group row">
                     <div class="col-md-10">
