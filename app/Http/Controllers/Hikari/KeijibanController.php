@@ -76,6 +76,7 @@ class KeijibanController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, Thread::$rules);
+        
         $thread = Thread::find($request->thread_id);
         $thread_form = $request->all();
         

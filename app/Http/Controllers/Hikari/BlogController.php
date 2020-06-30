@@ -151,22 +151,22 @@ class BlogController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, Blog::$rules);
-        
+    
         $blog = Blog::find($request->blog_id);
-        $form = $request->all();
+        $blog_form = $request->all();
         
-        if (isset($form['blog_image'])) {
-            $path = Storage::disk('s3')->putFile('/',$form['blog_image'],'public');
-            
+        
+        if (isset($blog_form['blog_image'])) {
+            $path = Storage::disk('s3')->putFile('/',$blog_form['blog_image'],'public');
             $blog->blog_image = Storage::disk('s3')->url($path);
-            unset($form['blog_image']);
+            unset($blog_form['blog_image']);
         } elseif(isset($request->remove)) {
             $blog->image_path = null;
-            unset($form['remove']);
+            unset($blog_form['remove']);
         }
-        unset($form['_token']);
+        unset($blog_form['_token']);
         
-        $blog->fill($form)->save();
+        $blog->fill($blog_form)->save();
         
         return redirect('admin/blog/list');
     }
