@@ -101,6 +101,7 @@ class KeijibanController extends Controller
         
         $cond_thread_id = $request->thread_id;
         $posts = Toukou::where('thread_id', $cond_thread_id)->get();
+        $posts = Toukou::paginate(5);
             
         return view('hikari.keijiban.in', ['prefectures' => $prefectures, 'posts'=> $posts, 'cond_thread_id' => $cond_thread_id]);
     }

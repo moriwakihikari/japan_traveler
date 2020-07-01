@@ -55,6 +55,10 @@
                 <hr color="#c0c0c0">
                 @endforeach
                 <div class="return"><input type="button"class="btn btn-primary" onclick="history.back()" value="戻る"></div>
+                
+                <div class="d-flex justify-content-center">
+                    {{ $blogs->links() }}
+                </div>
             </div>
         </div>
     </div>

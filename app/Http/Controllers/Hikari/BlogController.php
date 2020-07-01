@@ -126,12 +126,16 @@ class BlogController extends Controller
     
     public function list(Request $request)
     {
+        // $blogs = Blog::all();
+        // $blogs = Blog::paginate(10);
+        
         $cond_blog_title = $request->cond_blog_title;
         if ($cond_blog_title != '') {
             $posts = Blog::where('blog_title', $cond_blog_title)->get();
         } else {
             $posts = Blog::all();
         }
+        //$posts = Blog::paginate(10);
         return view('hikari.blog.list', ['posts' => $posts, 'cond_blog_title' => $cond_blog_title]);
     }
     
@@ -215,6 +219,7 @@ class BlogController extends Controller
         
         $cond_city_id = $request->city_id;
         $blogs = Blog::where('city_id', $cond_city_id)->get();
+        $blogs = Blog::paginate(3);
         
         if (count($blogs) > 0) {
             $headline = $blogs->shift();
