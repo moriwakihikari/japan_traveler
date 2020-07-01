@@ -218,9 +218,8 @@ class BlogController extends Controller
         $cities = City::all();
         
         $cond_city_id = $request->city_id;
-        $blogs = Blog::where('city_id', $cond_city_id)->get();
-        $blogs = Blog::paginate(3);
-        
+        $blogs = Blog::where('city_id', $cond_city_id)->paginate(3);
+
         if (count($blogs) > 0) {
             $headline = $blogs->shift();
         } else {

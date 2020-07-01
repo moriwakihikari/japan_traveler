@@ -57,7 +57,7 @@
                 <div class="return"><input type="button"class="btn btn-primary" onclick="history.back()" value="戻る"></div>
                 
                 <div class="d-flex justify-content-center">
-                    {{ $blogs->links() }}
+                    {{$blogs->appends(request()->input())->links()}}
                 </div>
             </div>
         </div>
