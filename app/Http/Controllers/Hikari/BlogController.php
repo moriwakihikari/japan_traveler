@@ -131,9 +131,9 @@ class BlogController extends Controller
         
         $cond_blog_title = $request->cond_blog_title;
         if ($cond_blog_title != '') {
-            $posts = Blog::where('blog_title', $cond_blog_title)->get();
+            $posts = Blog::where('blog_title', $cond_blog_title)->paginate(10);
         } else {
-            $posts = Blog::all();
+            $posts = Blog::paginate(10);
         }
         //$posts = Blog::paginate(10);
         return view('hikari.blog.list', ['posts' => $posts, 'cond_blog_title' => $cond_blog_title]);

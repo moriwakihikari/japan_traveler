@@ -55,6 +55,9 @@
                             @endforeach
                         </body>
                     </table>
+                    <div class="d-flex justify-content-center">
+                        {{$posts->appends(request()->input())->links()}}
+                    </div>
                 </div>
             </div>
         </div>
