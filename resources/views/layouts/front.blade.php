@@ -27,6 +27,33 @@
                     <ul class="header-title-area">
                         <li><h1 class="logo">日本の名所</h1></li>
                         <li><p class="text-sub">~自転車日本一周~<a class="text-sub" href="{{ action('Admin\Auth\LoginController@showLoginForm') }}">.</a></p></li>
+                        
+                        
+                        <span id="view_clock"></span>
+                        
+                        <script type="text/javascript">
+                            timerID = setInterval('clock()',500); //0.5秒毎にclock()を実行
+                            
+                            function clock() {
+                                document.getElementById("view_clock").innerHTML = getNow();
+                            }
+                            function getNow() {
+                                var now = new Date();
+                                var year = now.getFullYear();
+                                var mon = now.getMonth()+1; //１を足すこと
+                                var day = now.getDate();
+                                var you = now.getDay(); //曜日(0～6=日～土)
+                                var hour = now.getHours();
+                                var min = now.getMinutes();
+                                var sec = now.getSeconds();
+                                var youbi = new Array("日","月","火","水","木","金","土");
+                                
+                                var s = year + "年" + mon + "月" + day + "日(" + youbi[you] + ")" + hour + "時" + min + "分" + sec + "秒"; 
+                                return s;
+                                
+                            }
+                        </script>
+                        
                     </ul>
                     <ul class="navbar-nav-right">
                         @guest

@@ -1,5 +1,7 @@
 @extends('layouts.hikari')
 
+@section('title', '新規作成')
+
 @section('content')
     <div class="container">
         <div class="row">

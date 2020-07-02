@@ -1,5 +1,6 @@
 @extends('layouts.hikari')
-@section('title', '投稿済記事一覧')
+
+@section('title', '投稿記事一覧')
 
 @section('content')
     <div class="container">

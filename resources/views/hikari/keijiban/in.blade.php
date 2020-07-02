@@ -1,6 +1,6 @@
 @extends('layouts.front')
 
-@section('title', '掲示板作成')
+@section('title', '掲示板')
 
 @section('content')
 <div class="container">
@@ -55,6 +55,7 @@
         <div class="row">
             <input type="hidden" name="thread_id" value="{{ $cond_thread_id }}">
             <div class="blogs col-md-8 mx-auto mt-3">
+                @if(count($posts) > 0)
                 @foreach ($posts as $toukou)
                 <div class="post">
                     <div class="row">
@@ -75,6 +76,9 @@
                 </div>
                 <hr color="#c0c0c0">
                 @endforeach
+                @else
+                    <p class="text-center">投稿が存在しません</p>
+                @endif    
             </div>
         </div>
     <!--<div class="row">-->

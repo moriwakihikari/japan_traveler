@@ -1,4 +1,5 @@
 @extends('layouts.front')
+
 @section('title', 'Bulltin_Board')
 
 @section('content')

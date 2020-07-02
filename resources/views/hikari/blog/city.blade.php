@@ -1,5 +1,7 @@
 @extends('layouts.front')
 
+@section('title', '記事')
+
 @section('content')
     <div class="container">
         <hr color="#c0c0c0">
@@ -26,11 +28,14 @@
                 </div>
             </div>
         </div>
+        @else
+        　　<p class="text-center">ブログが存在しません</p>
         @endif
         <hr color="#c0c0c0">
         <div class="row">
             <input type="hidden" name="city_id" value="{{ $cond_city_id }}">
             <div class="blogs col-md-8 mx-auto mt-3">
+                @if(count($blogs) > 0)
                 @foreach ($blogs as $blog)
                 <div class="post">
                     <div class="row">
@@ -54,6 +59,7 @@
                 </div>
                 <hr color="#c0c0c0">
                 @endforeach
+                @endif
                 <div class="return"><input type="button"class="btn btn-primary" onclick="history.back()" value="戻る"></div>
                 
                 <div class="d-flex justify-content-center">
