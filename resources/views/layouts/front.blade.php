@@ -29,7 +29,7 @@
                         <li><p class="text-sub">~自転車日本一周~<a class="text-sub" href="{{ action('Admin\Auth\LoginController@showLoginForm') }}">.</a></p></li>
                         
                         
-                        <span id="view_clock"></span>
+                        <span class="time" id="view_clock"></span>
                         
                         <script type="text/javascript">
                             timerID = setInterval('clock()',500); //0.5秒毎にclock()を実行

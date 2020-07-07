@@ -11,6 +11,8 @@ use App\Area;
 use App\City;
 use App\Admin;
 use Storage;
+use Image;
+use Carbon\Carbon;
 
 class BlogController extends Controller
 {
@@ -103,16 +105,29 @@ class BlogController extends Controller
         $blog = new Blog;
         $form = $request->all();
         
+        
         if (isset($form['blog_image'])) {
-            // $imagefile = $request->file('blog_image');
-            // $path = $imagefile->store('storage/image');
-        // dd($request->file('blog_image'));            
-        $path = Storage::disk('s3')->putFile('/',$form['blog_image'],'public');
-            // dd($path);
+            $file = $request->file('blog_image');
+            $now = date_format(Carbon::now(), 'YmdHis');
+            $name = $file->getClientOriginalName();
+            $storePath="japan_traveler/".$now."_".$name;
+            $image = Image::make($file)->resize(500, 375)->encode('jpg');
+            $hash = md5($image->__toString());
+            $path = "japan_traveler/{$hash}.jpg";
+            Storage::disk('s3')->put($path, $image, 'public');
             $blog->blog_image = Storage::disk('s3')->url($path);
+           
         } else {
             $blog->blog_image = null;
         }
+        //  if (isset($form['blog_image'])) {
+        // dd($request->file('blog_image'));            
+        // $path = Storage::disk('s3')->putFile('/',$form['blog_image'],'public');
+        //     dd($path);
+        //     $blog->blog_image = Storage::disk('s3')->url($path);
+        // } else {
+        //     $blog->blog_image = null;
+        // }   
         
         unset($form['_token']);
         
@@ -157,20 +172,35 @@ class BlogController extends Controller
         $this->validate($request, Blog::$rules);
     
         $blog = Blog::find($request->blog_id);
-        $blog_form = $request->all();
+        $form = $request->all();
         
-        
-        if (isset($blog_form['blog_image'])) {
-            $path = Storage::disk('s3')->putFile('/',$blog_form['blog_image'],'public');
+       if (isset($form['blog_image'])) {
+            $file = $request->file('blog_image');
+            $now = date_format(Carbon::now(), 'YmdHis');
+            $name = $file->getClientOriginalName();
+            $storePath="japan_traveler/".$now."_".$name;
+            $image = Image::make($file)->resize(500, 375)->encode('jpg');
+            $hash = md5($image->__toString());
+            $path = "japan_traveler/{$hash}.jpg";
+            Storage::disk('s3')->put($path, $image, 'public');
             $blog->blog_image = Storage::disk('s3')->url($path);
-            unset($blog_form['blog_image']);
+           
         } elseif(isset($request->remove)) {
-            $blog->image_path = null;
+            $blog->blog_image = null;
             unset($blog_form['remove']);
-        }
-        unset($blog_form['_token']);
+        } 
+        // if (isset($blog_form['blog_image'])) {
+        //     $path = Storage::disk('s3')->putFile('/',$blog_form['blog_image'],'public');
+        //     $blog->blog_image = Storage::disk('s3')->url($path);
+        //     unset($blog_form['blog_image']);
+        // } elseif(isset($request->remove)) {
+        //     $blog->image_path = null;
+        //     unset($blog_form['remove']);
+        // }
+        unset($form['_token']);
+        unset($form['blog_image']);
         
-        $blog->fill($blog_form)->save();
+        $blog->fill($form)->save();
         
         return redirect('admin/blog/list');
     }
