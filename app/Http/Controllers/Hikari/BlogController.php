@@ -146,11 +146,11 @@ class BlogController extends Controller
         
         $cond_blog_title = $request->cond_blog_title;
         if ($cond_blog_title != '') {
-            $posts = Blog::where('blog_title', $cond_blog_title)->paginate(10);
+            $posts = Blog::where('blog_title', $cond_blog_title)->orderby('created_at', 'desc')->paginate(10);
         } else {
-            $posts = Blog::paginate(10);
+            $posts = Blog::orderby('created_at', 'desc')->paginate(10);
         }
-        //$posts = Blog::paginate(10);
+        
         return view('hikari.blog.list', ['posts' => $posts, 'cond_blog_title' => $cond_blog_title]);
     }
     
@@ -248,7 +248,7 @@ class BlogController extends Controller
         $cities = City::all();
         
         $cond_city_id = $request->city_id;
-        $blogs = Blog::where('city_id', $cond_city_id)->paginate(3);
+        $blogs = Blog::where('city_id', $cond_city_id)->orderby('created_at', 'desc')->paginate(3);
 
         if (count($blogs) > 0) {
             $headline = $blogs->shift();

@@ -11,6 +11,8 @@ use App\Thread;
 use App\User;
 use App\Admin;
 use Storage;
+use Image;
+use Carbon\Carbon;
 
 class KeijibanController extends Controller
 {
@@ -21,19 +23,17 @@ class KeijibanController extends Controller
         
         $cond_thread_title = $request->cond_thread_title;
         if ($cond_thread_title != '') {
-            $posts = Thread::where('thread_title', $cond_thread_title)->get();
+            $posts = Thread::where('thread_title', $cond_thread_title)->orderby('created_at', 'desc')->get();
         } else {
-            $posts = Thread::all();
+            $posts = Thread::orderBy('created_at', 'desc')->get();
         }
         
-        //$thread = Thread::findOrFail($request);
-        $thread = Thread::all();
-        
+
         // $cond_thread_id = $request->thread_id;
         // $thread_id = Toukou::where('thread_id', $cond_thread_id)->get();
         
         
-        return view('hikari.keijiban.index', ['prefectures' => $prefectures, 'posts' => $posts, 'cond_thread_title' => $cond_thread_title, 'thread' => $thread]);
+        return view('hikari.keijiban.index', ['prefectures' => $prefectures, 'posts' => $posts, 'cond_thread_title' => $cond_thread_title]);
     }
     
     public function add()
@@ -100,7 +100,7 @@ class KeijibanController extends Controller
         $prefectures = Prefecture::all();
         
         $cond_thread_id = $request->thread_id;
-        $posts = Toukou::where('thread_id', $cond_thread_id)->paginate(5);
+        $posts = Toukou::where('thread_id', $cond_thread_id)->orderby('created_at', 'desc')->paginate(5);
 
         return view('hikari.keijiban.in', ['prefectures' => $prefectures, 'posts'=> $posts, 'cond_thread_id' => $cond_thread_id]);
     }
@@ -109,15 +109,20 @@ class KeijibanController extends Controller
        
     public function toukou(Request $request)
     {
-        //$threads = Thread::all();
         $this->validate($request, Toukou::$rules);
         
         $toukou = new Toukou;
         $form = $request->all();
-        //$toukou = new Toukou;
-        //$form = $request->all();
+        
         if (isset($form['toukou_image'])) {
-            $path = Storage::disk('s3')->putFile('/',$form['toukou_image'],'public');
+        $file = $request->file('toukou_image');
+            $now = date_format(Carbon::now(), 'YmdHis');
+            $name = $file->getClientOriginalName();
+            $storePath="japan_traveler/".$now."_".$name;
+            $image = Image::make($file)->resize(500, 375)->encode('jpg');
+            $hash = md5($image->__toString());
+            $path = "japan_traveler/{$hash}.jpg";
+            Storage::disk('s3')->put($path, $image, 'public');
             $toukou->toukou_image = Storage::disk('s3')->url($path);
         } else {
             $toukou->toukou_image = null;

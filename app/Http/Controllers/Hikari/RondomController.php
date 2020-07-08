@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Prefecture;
+use App\Blog;
 
 class RondomController extends Controller
 {
@@ -21,7 +22,11 @@ class RondomController extends Controller
     {
         $prefectures = Prefecture::all();
         
-        $fortune = Prefecture::inRandomOrder('prefecture_name')->first()->prefecture_name;
+        
+        $rondom = Prefecture::inRandomOrder('prefecture_name')->first()->prefecture_name;
+        
+        $blog = Blog::inRandomOrder('blog_id')->first();
+        
         /*$fortune = array(
             "北海道",
             "青森",
@@ -43,6 +48,6 @@ class RondomController extends Controller
         $count  = count($fortune);
         $random = rand(0, $count - 1);*/
         //$aaa = "TEST";
-        return view('hikari.rondom.result',['fortune' => $fortune, 'prefectures' => $prefectures]);//連想配列　
+        return view('hikari.rondom.result',['rondom' => $rondom, 'prefectures' => $prefectures, 'blog' => $blog]);//連想配列　
     }
 }
