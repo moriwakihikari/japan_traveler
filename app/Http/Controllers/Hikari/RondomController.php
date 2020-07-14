@@ -22,10 +22,14 @@ class RondomController extends Controller
     {
         $prefectures = Prefecture::all();
         
+        // do {
+            $rondom = Prefecture::inRandomOrder('prefecture_name')->first();
         
-        $rondom = Prefecture::inRandomOrder('prefecture_name')->first()->prefecture_name;
-        
-        $blog = Blog::inRandomOrder('blog_id')->first();
+            $blog = Blog::inRandomOrder('blog_id')->where('prefecture_id', $rondom->prefecture_id)->first();
+            
+        // } while ($blog == null);
+        // while(empty($blog)){
+        // while($blog == null){
         
         /*$fortune = array(
             "北海道",

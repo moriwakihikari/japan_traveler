@@ -1,6 +1,6 @@
 @extends('layouts.front')
 
-@section('title', 'Rondom')
+@section('title', 'Random')
 
 @section('content')
     <div class="container">

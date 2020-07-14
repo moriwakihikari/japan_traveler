@@ -81,7 +81,7 @@
                     <ul class="header-navigation">
                         <li><a href="{{ action('Hikari\HomeController@index') }}">Home</a></li>
                         <li><a href="{{ action('Hikari\BlogController@index') }}">Prefecture</a></li>
-                        <li><a href="{{ action('Hikari\RondomController@index') }}">Rondom</a></li>
+                        <li><a href="{{ action('Hikari\RondomController@index') }}">Random</a></li>
                         <li><a href="{{ action('Hikari\KeijibanController@index') }}">Bulltin_Board</a></li>
                     </ul>
                 </div>
